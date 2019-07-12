@@ -8,6 +8,7 @@
 - Speer
 - Bogen
 - Armbrust
+- Messer
 
 #### **Monsterarten**:
 - Spinne
