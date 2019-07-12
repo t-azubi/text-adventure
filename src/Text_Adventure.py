@@ -5,7 +5,7 @@ import random
 import time
 import sys
 
-from Classes import Room
+from .Classes import Room , quotes, actions
 
 ############### Changes to be made ###############
 #
@@ -41,15 +41,15 @@ displayIntro()
 
 
 def IntroQuestion(intro):
-    if intro == "START" or intro == "start":
+    if intro.upper == "START" :
         print("\n> Alright, so let us start the adventure of Gerwald of Waldstett!")
         #time.sleep(1.5)
         return Story(intro)
-    elif intro == "HELP" or intro == "help":
+    elif intro.upper == "HELP":
         print("\nINSTRUCTIONS, just follow along the questions and just input the things you are allowed to!!!")
         #time.sleep(1.5)
         return Help(intro)
-    elif intro == "QUIT" or intro == "quit":
+    elif intro.upper == "QUIT":
         print("\n#######################################")
         print("##                                   ##")
         print("##  Thank you for playing the game.  ##")
@@ -62,20 +62,20 @@ def IntroQuestion(intro):
 
 
 def Story(intro):
-    if intro == "START" or intro == "start":
+    if intro.upper == "START":
         #time.sleep(1.5)
         print("\n> I hope you brought enough time and i hope you have fun playing.")
         return
     else:
-        intro = str(input("\nPlease enter a valid command! "))
+        intro = str(input("\n"+ quotes.invaildCommand))
         return IntroQuestion(intro)
 
 def Help(intro):
-    if intro == "HELP" or intro == "help":
+    if intro.upper == "HELP":
         intro = input("\nIf you are ready to start the game, enter the START command! ")
         return IntroQuestion(intro)
     else:
-        intro = str(input("\nPlease enter a valid command! "))
+        intro = str(input("\n"+ quotes.invaildCommand))
         return IntroQuestion(intro)
 
 intro = str(input("\n> Please state what you want to do! \n"))
@@ -97,7 +97,7 @@ def Path(choose_path):
         print("\n> You chose path 2")
         return 2
     else:
-        choose_path = str(input("> Pleas enter a valid command! "))
+        choose_path = str(input(quotes.invaildCommand))
         return Path(choose_path)
 
 choose_path = str(input("\n> Enter your choice: "))
@@ -106,13 +106,13 @@ Path(choose_path)
 
 
 def Path1(action):
-    if action == "LOOK" or action == "look":
+    if action.upper == actions.LOOK:
         print("> You are looking around")
         return
-    elif action == "TAKE" or action == "take":
+    elif action.upper == "TAKE":
         print("> There is nothing to take yet.")
         return
-    elif action == "ATTACK" or action == "attack":
+    elif action.upper == "ATTACK" or action == "attack":
         print("> There is nothing to attack yet.")
         return
     else:

@@ -1,5 +1,13 @@
 
-
+class quotes :
+   def invaildCommand(self):
+     return "> Pleas enter a valid command! "
+    
+   
+ class actions(Enum) :
+     ATTACK = 1,
+     LOOK = 2,
+     TAKE = 3
 
 class Weapon:
 
