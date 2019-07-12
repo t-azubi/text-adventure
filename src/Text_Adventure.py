@@ -9,7 +9,7 @@ from .Classes import Room , quotes, actions
 
 ############### Changes to be made ###############
 #
-# input auf upper and lower
+#
 #
 #
 #### Erik ist ein trunkenbold #####
