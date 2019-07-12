@@ -5,7 +5,7 @@ import random
 import time
 import sys
 
-from .Classes import Room , quotes, actions
+from .Classes import Room , quotes, actions,genPaths
 
 ############### Changes to be made ###############
 #
@@ -90,12 +90,10 @@ print("\n> You now have the choice of choosing one of two paths. Type (1) to cho
 
 
 def Path(choose_path):
-    if choose_path == "1":
-        print("\n> Alright, you chose the first path")
-        return 1
-    elif choose_path == "2":
-        print("\n> You chose path 2")
-        return 2
+    int pathsQuantity =  genPaths.path_Counter
+    
+    
+
     else:
         choose_path = str(input(quotes.invaildCommand))
         return Path(choose_path)
@@ -109,10 +107,10 @@ def Path1(action):
     if action.upper == actions.LOOK:
         print("> You are looking around")
         return
-    elif action.upper == "TAKE":
+    elif action.upper == actions.TAKE:
         print("> There is nothing to take yet.")
         return
-    elif action.upper == "ATTACK" or action == "attack":
+    elif action.upper == actions.ATTACK:
         print("> There is nothing to attack yet.")
         return
     else:

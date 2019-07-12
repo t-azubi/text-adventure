@@ -5,9 +5,16 @@ class quotes :
     
    
  class actions(Enum) :
-     ATTACK = 1,
-     LOOK = 2,
-     TAKE = 3
+     ATTACK = "ATTACK",
+     LOOK = "LOOK",
+     TAKE = "TAKE"
+
+class genPaths():
+    import random
+
+    def path_Counter():
+       return = random.randint(0,3)
+
 
 class Weapon:
 
