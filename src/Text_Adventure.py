@@ -3,7 +3,7 @@
 # description: text-based adventure game
 import sys
 
-from Classes import Quotes, Actions, GenPaths
+from Classes import Quotes, GenPaths, StartingRoom, Room
 
 
 ############### Changes to be made ###############
@@ -82,23 +82,10 @@ IntroQuestion(intro)
 print("\n> And so the tale begins. Years ago in the land of Ghrezok, there lived a man named Gerwald in a city called Waldstett.")
 #time.sleep(1.5)
 
-GenPaths.path_gen()
-
-
-def Path(action):
-    if action.upper() == Actions.LOOK.name:
-        print("> You are looking around")
-    elif action.upper() == Actions.TAKE.name:
-        print("> There is nothing to take yet.")
-    elif action.upper() == Actions.ATTACK.name:
-        print("> There is nothing to attack yet.")
-    else:
-        action = str(input("> Please enter a valid command! "))
-        Path(action)
-
-
-action = str(input("\n> What do you want to do, you can LOOK, TAKE or ATTACK: "))
-Path(action)
+StartingRoom.intro_text()
+while 1 == 1:
+    GenPaths.path_gen()
+    Room.gen_room()
 
 
 
