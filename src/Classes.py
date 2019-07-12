@@ -12,9 +12,29 @@ class quotes :
 class genPaths():
     import random
 
-    def path_Counter():
-       return = random.randint(0,3)
+    def path_gen():
+       path_Handling(random.randint(0,3))
+      
+    def path_Handling(counter)  
+         str action = ""
+       if counter == 1
+         action = str(input( ">There is only one way to go")
+       elif counter == 2 
+         action = str(input( ">There are two ways you can go, which will you choose") 
+       elif counter == 3
+         action = str(input( ">There are three ways you can go, choose wisely") 
 
+      if int(action) > counter or int(action) < 1
+        print("> You have to choose a valied path!")
+        path_Handling(counter)
+
+    pathWay[int(action)]()
+    pathWay = 
+    {
+           1 : print("You choose the first path "),
+           2 : print("You choose path two"),
+           3 : print("You choose the third path")
+    }
 
 class Weapon:
 

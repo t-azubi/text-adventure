@@ -88,19 +88,7 @@ print("\n> And so the tale begins. Years ago in the land of Ghrezok, there lived
 #time.sleep(1.5)
 print("\n> You now have the choice of choosing one of two paths. Type (1) to choose path one or (2) to choose path two.")
 
-
-def Path(choose_path):
-    int pathsQuantity =  genPaths.path_Counter
-    
-    
-
-    else:
-        choose_path = str(input(quotes.invaildCommand))
-        return Path(choose_path)
-
-choose_path = str(input("\n> Enter your choice: "))
-
-Path(choose_path)
+genPaths.path_gen()
 
 
 def Path1(action):
