@@ -24,16 +24,14 @@ class GiantSpider(Enemy):
 
 class Spider(Enemy):
     def __init__(self):
-        super().__init__(name="Spider", hp=3, damage=1, armor=0)
+        super().__init__(name="Spiders", hp=3, damage=1, armor=0)
 
 
 class Troll(Enemy)
     def __iadd__(self):
-        super().__init__(name="Troll", hp=20, damage=2, armor=2)
+        super().__init__(name="Trolls", hp=20, damage=2, armor=2)
 
 
 class Ogre(Enemy):
     def __init__(self):
-
-
-super().__init__(name="Ogre", hp=15, damage=5, armor=1)
+        super().__init__(name="Ogres", hp=15, damage=5, armor=1)
