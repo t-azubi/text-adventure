@@ -7,23 +7,17 @@ class Item():
         self.value = value
 
     def __str__(self):
-        return "{}\n=====\n{}\nValue: {}\n".format(self.name, self.description, self.value)
+        return "{}\n{}\nValue: {}\n".format(self.name, self.description, self.value)
 
 
-class Weapon:
-
-    def __init__(self, name, kind, dmg, worth, broken):
+class Weapon(Item):
+    def __init__(self, name, kind, dmg, value, broken, description):
         self.name = name
         self.kind = kind
         self.dmg = dmg
-        self.worth = worth
+        self.value = value
         self.broken = broken
-
-    def can_attack(self):
-        if not self.broken:
-            return True
-        else:
-            return False
+        self.description = description
 
 
 class Rock(Weapon):
@@ -31,8 +25,9 @@ class Rock(Weapon):
         super().__init__(name="Rock",
                          kind="meele",
                          dmg=1,
-                         worth=0,
-                         broken=Weapon.can_attack()
+                         value=0,
+                         broken=False,
+                         description="A Rock at the size as your fist. It hopefully will be enough for the beginning "
                          )
 
 
@@ -41,18 +36,20 @@ class Dagger(Weapon):
         super().__init__(name="Rock",
                          kind="meele",
                          dmg=5,
-                         worth=10,
-                         broken=Weapon.can_attack()
+                         value=10,
+                         broken=False,
+                         description="A small knife, now we can fight!"
                          )
 
 
 class Bow(Weapon):
     def __init__(self):
         super().__init__(name="Rock",
-                         kind="meele",
-                         dmg=1,
-                         worth=0,
-                         broken=Weapon.can_attack()
+                         kind="range",
+                         dmg=10,
+                         value=20,
+                         broken=False,
+                         description="A bow with some arrows, let's shoot some monsters."
                          )
 
 
@@ -60,9 +57,10 @@ class Sword(Weapon):
     def __init__(self):
         super().__init__(name="Rock",
                          kind="meele",
-                         dmg=1,
-                         worth=0,
-                         broken=Weapon.can_attack()
+                         dmg=15,
+                         value=25,
+                         broken=False,
+                         description="A sword, now we can defend your self against all"
                          )
 
 
@@ -70,9 +68,10 @@ class Axe(Weapon):
     def __init__(self):
         super().__init__(name="Rock",
                          kind="meele",
-                         dmg=1,
-                         worth=0,
-                         broken=Weapon.can_attack()
+                         dmg=18,
+                         value=35,
+                         broken=False,
+                         description="Off with their heads"
                          )
 
 

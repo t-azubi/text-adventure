@@ -1,4 +1,4 @@
-from Character import Character as Player
+from Player import Character as Player
 
 
 class Action():
@@ -34,6 +34,4 @@ class Attack(Action):
 
 class Flee(Action):
     def __init__(self, tile):
-
-
-super().__init__(method=Player.flee)
+        super().__init__(method=Player.flee)

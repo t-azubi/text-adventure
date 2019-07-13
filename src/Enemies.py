@@ -27,7 +27,7 @@ class Spider(Enemy):
         super().__init__(name="Spiders", hp=3, damage=1, armor=0)
 
 
-class Troll(Enemy)
+class Troll(Enemy):
     def __iadd__(self):
         super().__init__(name="Trolls", hp=20, damage=2, armor=2)
 
