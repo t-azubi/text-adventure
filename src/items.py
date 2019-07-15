@@ -23,7 +23,7 @@ class Weapon(Item):
 class Rock(Weapon):
     def __init__(self):
         super().__init__(name="Rock",
-                         kind="meele",
+                         kind="melee",
                          dmg=1,
                          value=0,
                          broken=False,
@@ -33,8 +33,8 @@ class Rock(Weapon):
 
 class Dagger(Weapon):
     def __init__(self):
-        super().__init__(name="Rock",
-                         kind="meele",
+        super().__init__(name="Dagger",
+                         kind="melee",
                          dmg=5,
                          value=10,
                          broken=False,
@@ -44,8 +44,8 @@ class Dagger(Weapon):
 
 class Bow(Weapon):
     def __init__(self):
-        super().__init__(name="Rock",
-                         kind="range",
+        super().__init__(name="Bow",
+                         kind="ranged",
                          dmg=10,
                          value=20,
                          broken=False,
@@ -55,8 +55,8 @@ class Bow(Weapon):
 
 class Sword(Weapon):
     def __init__(self):
-        super().__init__(name="Rock",
-                         kind="meele",
+        super().__init__(name="Sword",
+                         kind="melee",
                          dmg=15,
                          value=25,
                          broken=False,
@@ -66,8 +66,8 @@ class Sword(Weapon):
 
 class Axe(Weapon):
     def __init__(self):
-        super().__init__(name="Rock",
-                         kind="meele",
+        super().__init__(name="Axe",
+                         kind="melee",
                          dmg=18,
                          value=35,
                          broken=False,
