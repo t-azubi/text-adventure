@@ -39,19 +39,22 @@ class Ogre(Enemy):
 
 class Dragon(Enemy):
     def __init__(self):
-        super().__init__(name="Giant Spider", hp=25, damage=2, armor=4)
+        super().__init__(name="Dragon", hp=25, damage=2, armor=4)
+
 
 
 class Wolf(Enemy):
     def __init__(self):
-        super().__init__(name="Spiders", hp=6, damage=3, armor=0)
+        super().__init__(name="Wolf", hp=6, damage=3, armor=0)
+
 
 
 class Ghost(Enemy):
     def __iadd__(self):
-        super().__init__(name="Trolls", hp=5, damage=10, armor=2)
+        super().__init__(name="Ghost", hp=5, damage=10, armor=2)
+
 
 
 class Bat(Enemy):
     def __init__(self):
-        super().__init__(name="Ogres", hp=1, damage=1, armor=1)
+        super().__init__(name="Bat", hp=1, damage=1, armor=1)

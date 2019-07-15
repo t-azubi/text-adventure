@@ -45,7 +45,7 @@ class Dagger(Weapon):
 class Bow(Weapon):
     def __init__(self):
         super().__init__(name="Bow",
-                         kind="range",
+                         kind="ranged",
                          dmg=10,
                          value=20,
                          broken=False,

@@ -1,5 +1,6 @@
 import random
 
+
 from enum import Enum
 
 class Quotes:
@@ -60,3 +61,4 @@ class Actions(Enum):
     ATTACK = 1,
     LOOK = 2,
     TAKE = 3
+
