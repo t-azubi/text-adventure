@@ -12,7 +12,7 @@ from Player import Character
 ############### Changes to be made ###############
 #
 # input auf (done)
-#
+# waffe kann kaputt gehen, brauchen noch random chance dafür
 #
 #
 #
@@ -89,7 +89,7 @@ print(
 
 player = Character()
 Room.StartingRoom.intro_text(self=Room.Gen_Current_Room.gen())
-print("> You look around an find some items")
+print("> You look around an find some items\n")
 Character.print_inventory(player)
 option = IdelOption.Option
 GenPaths.path_gen()

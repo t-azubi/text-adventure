@@ -16,8 +16,11 @@ class Character:
             action_method(**kwargs)
 
     def print_inventory(self):
+        print("#################################################")
+        print("\nINVENTORY: \n")
         for item in self.inventory:
             print(item)
+        print("#################################################\n")
 
     def attack(self, enemy):
         best_weapon = None

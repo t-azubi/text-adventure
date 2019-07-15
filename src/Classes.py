@@ -23,12 +23,12 @@ class GenPaths:
 
     def path_handling(counter):
         if counter == 2:
-            action = str(input(">There are two ways you can go, which will you choose.\n"))
+            action = str(input(">There are two ways you can go, which will you choose. Enter 1 or 2 to choose your path!\n"))
         elif counter == 3:
-            action = str(input(">There are three ways you can go, choose wisely.\n"))
+            action = str(input(">There are three ways you can go, choose wisely. Enter 1, 2 or 3 to choose your path!\n"))
 
         if int(action) > counter or int(action) < 1:
-            print("> You have to choose a valied path!")
+            print("> You have to chosen a valid path!")
             GenPaths.path_Handling(counter)
 
         return action
@@ -43,7 +43,7 @@ class GenPaths:
 
         rand = random.randint(1, 5)
         if rand == 1:
-            quote += " let's see where this path will leads you."
+            quote += " let's see where this path will lead you."
         elif rand == 2:
             quote += " hopefully your decision was the right one."
         elif rand == 3:

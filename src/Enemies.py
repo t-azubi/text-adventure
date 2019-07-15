@@ -35,3 +35,23 @@ class Troll(Enemy):
 class Ogre(Enemy):
     def __init__(self):
         super().__init__(name="Ogres", hp=15, damage=5, armor=1)
+
+
+class Dragon(Enemy):
+    def __init__(self):
+        super().__init__(name="Giant Spider", hp=25, damage=2, armor=4)
+
+
+class Wolf(Enemy):
+    def __init__(self):
+        super().__init__(name="Spiders", hp=6, damage=3, armor=0)
+
+
+class Ghost(Enemy):
+    def __iadd__(self):
+        super().__init__(name="Trolls", hp=5, damage=10, armor=2)
+
+
+class Bat(Enemy):
+    def __init__(self):
+        super().__init__(name="Ogres", hp=1, damage=1, armor=1)
