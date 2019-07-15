@@ -16,13 +16,13 @@ class Option:
         action = str(input(">Do you want to look, walk around, open you inventory or continue? \n"))
         action = re.sub("\n", "", action)
         action = re.sub("\s", "", action)
-        if action.upper() == "LOOK":
+        if action.upper() == "LOOK" or action.upper() == "look":
             Option.look_around(player)
-        elif action.upper() == "WALK":
+        elif action.upper() == "WALK" or action.upper() == "walk":
             Option.walk_around(player)
-        elif action.upper() == "Continue":
+        elif action.upper() == "continue" or action.upper() == "CONTINUE":
             return
-        elif action.upper() == "INVENTORY":
+        elif action.upper() == "inventory" or action.upper() == "INVENTORY":
             player.print_inventory()
             Option.desciption(player)
         else:
