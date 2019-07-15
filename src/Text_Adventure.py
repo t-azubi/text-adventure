@@ -1,15 +1,17 @@
 # name: Richard
 # date: 08-07-2019
 # description: text-based adventure game
-import random
-import time
 import sys
 
-from .Classes import Room , quotes, actions
+import IdelOption
+import Room
+from Classes import Quotes, GenPaths
+from Player import Character
+
 
 ############### Changes to be made ###############
 #
-# input auf upper and lower
+# input auf (done)
 #
 #
 #
@@ -19,7 +21,6 @@ from .Classes import Room , quotes, actions
 #
 #
 ##################################################
-
 
 
 def displayIntro():
@@ -37,19 +38,16 @@ def displayIntro():
     print("#############################################")
 
 
-displayIntro()
-
-
 def IntroQuestion(intro):
-    if intro.upper == "START" :
+    if intro.upper() == "START":
         print("\n> Alright, so let us start the adventure of Gerwald of Waldstett!")
-        #time.sleep(1.5)
-        return Story(intro)
-    elif intro.upper == "HELP":
+        # time.sleep(1.5)
+        Story(intro)
+    elif intro.upper() == "HELP":
         print("\nINSTRUCTIONS, just follow along the questions and just input the things you are allowed to!!!")
-        #time.sleep(1.5)
-        return Help(intro)
-    elif intro.upper == "QUIT":
+        # time.sleep(1.5)
+        Help(intro)
+    elif intro.upper() == "QUIT":
         print("\n#######################################")
         print("##                                   ##")
         print("##  Thank you for playing the game.  ##")
@@ -58,77 +56,51 @@ def IntroQuestion(intro):
         sys.exit()
     else:
         intro = str(input("\nPlease enter one of the commands above: "))
-        return IntroQuestion(intro)
+        IntroQuestion(intro)
 
 
 def Story(intro):
-    if intro.upper == "START":
-        #time.sleep(1.5)
+    if intro.upper() == "START":
+        # time.sleep(1.5)
         print("\n> I hope you brought enough time and i hope you have fun playing.")
-        return
     else:
-        intro = str(input("\n"+ quotes.invaildCommand))
-        return IntroQuestion(intro)
+        intro = str(input("\n" + Quotes.invalid_input()))
+        IntroQuestion(intro)
+
 
 def Help(intro):
-    if intro.upper == "HELP":
+    if intro.upper() == "HELP":
         intro = input("\nIf you are ready to start the game, enter the START command! ")
-        return IntroQuestion(intro)
+        IntroQuestion(intro)
     else:
-        intro = str(input("\n"+ quotes.invaildCommand))
-        return IntroQuestion(intro)
+        intro = str(input("\n" + Quotes.invalid_input()))
+        IntroQuestion(intro)
 
+
+displayIntro()
 intro = str(input("\n> Please state what you want to do! \n"))
-
 IntroQuestion(intro)
 
-
-#time.sleep(1.5)
-print("\n> And so the tale begins. Years ago in the land of Ghrezok, there lived a man named Gerwald in a city called Waldstett.")
-#time.sleep(1.5)
-print("\n> You now have the choice of choosing one of two paths. Type (1) to choose path one or (2) to choose path two.")
-
-
-def Path(choose_path):
-    if choose_path == "1":
-        print("\n> Alright, you chose the first path")
-        return 1
-    elif choose_path == "2":
-        print("\n> You chose path 2")
-        return 2
-    else:
-        choose_path = str(input(quotes.invaildCommand))
-        return Path(choose_path)
-
-choose_path = str(input("\n> Enter your choice: "))
-
-Path(choose_path)
+# time.sleep(1.5)
+print(
+    "\n> And so the tale begins. Years ago in the land of Ghrezok, there lived a man named Gerwald in a city called Waldstett.")
+# time.sleep(1.5)
 
 
-def Path1(action):
-    if action.upper == actions.LOOK:
-        print("> You are looking around")
-        return
-    elif action.upper == "TAKE":
-        print("> There is nothing to take yet.")
-        return
-    elif action.upper == "ATTACK" or action == "attack":
-        print("> There is nothing to attack yet.")
-        return
-    else:
-        action = str(input("> Please enter a valid command! "))
-        return Path1(action)
-
-
-action = str(input("\n> What do you want to do, you can LOOK, TAKE or ATTACK: "))
-
-
-while Path(choose_path) == 1:
-    Path1(action)
-    action = str(input("\n> What do you want to do, you can LOOK, TAKE or ATTACK: "))
-    if action == "leave" or action == "LEAVE":
-        break
-
-
-
-print("well done, you broke our loop")
+player = Character()
+Room.StartingRoom.intro_text(self=Room.Gen_Current_Room.gen())
+print("> You look around an find some items")
+Character.print_inventory(player)
+option = IdelOption.Option
+GenPaths.path_gen()
+room = Room.Gen_Current_Room.gen()
+print(room.intro_text(room))
+if room == Room.EnemyRoom:
+    room.modify_player(room, player)
+while player.is_alive() and not player.victory:
+    option.desciption(player)
+    GenPaths.path_gen()
+    room = Room.Gen_Current_Room.gen()
+    print(room.intro_text(room))
+    if room == Room.EnemyRoom:
+        room.modify_player(room, player)
