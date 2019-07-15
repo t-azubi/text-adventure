@@ -23,9 +23,9 @@ class GenPaths:
 
     def path_handling(counter):
         if counter == 2:
-            action = str(input(">There are two ways you can go, which will you choose."))
+            action = str(input(">There are two ways you can go, which will you choose.\n"))
         elif counter == 3:
-            action = str(input(">There are three ways you can go, choose wisely."))
+            action = str(input(">There are three ways you can go, choose wisely.\n"))
 
         if int(action) > counter or int(action) < 1:
             print("> You have to choose a valied path!")

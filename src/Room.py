@@ -65,9 +65,9 @@ class FindDaggerRoom(LootRoom):
         """
 
 
-class MerchantRoom(LootRoom):
+class MerchantRoom(Room):
     def __init__(self):
-        super().__init__(items.Dagger())
+        super().__init__()
 
     def intro_text(self):
         return """

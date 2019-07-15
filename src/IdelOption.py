@@ -1,5 +1,7 @@
-import items
 import random
+import re
+
+import items
 
 
 class Option:
@@ -11,7 +13,9 @@ class Option:
         self.desciption = description
 
     def desciption(player):
-        action = str(input(">Do you want to look, walk around, open you inventory or continue"))
+        action = str(input(">Do you want to look, walk around, open you inventory or continue? \n"))
+        action = re.sub("\n", "", action)
+        action = re.sub("\s", "", action)
         if action.upper() == "LOOK":
             Option.look_around(player)
         elif action.upper() == "WALK":
