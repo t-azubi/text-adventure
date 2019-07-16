@@ -12,12 +12,15 @@ from Player import Character
 ############### Changes to be made ###############
 #
 # input auf (done)
+# waffe kann kaputt gehen, brauchen noch random chance dafür
+#
+
 #
 #
+#### Erik ist ein trunkenbold #####
 #
 #
-#
-#
+#k
 #
 #
 ##################################################
