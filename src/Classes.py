@@ -27,9 +27,8 @@ class GenPaths:
         elif counter == 3:
             action = str(input(">There are three ways you can go, choose wisely.\n"))
 
-        if int(action) > counter or int(action) < 1:
-            print("> You have to choose a valied path!")
-            GenPaths.path_Handling(counter)
+        while int(action) > counter or int(action) < 1:
+            action = str(input("Please enter a valid path 1 - {}\n".format(str(counter))))
 
         return action
 

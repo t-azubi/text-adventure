@@ -48,15 +48,23 @@ class LootRoom(Room):
         self.item = item
 
     def add_loot(self, the_player):
-        the_player.inventory.append(self.item)
+        bool = False
+        for items in the_player.inventory:
+            if items.name == self.item.name:
+                items.amount += self.item.amount
+                items.value = items.base * items.amount
+                bool = True
+        if bool == False:
+            the_player.inventory.append(self.item)
 
     def modify_player(self, the_player):
         self.add_loot(the_player)
 
 
 class FindDaggerRoom(LootRoom):
-    def __init__(self):
-        super().__init__(items.Dagger())
+    def __init__(self, item=items.Dagger(1)):
+        self.item = item
+        super().__init__(item)
 
     def intro_text(self):
         return """
@@ -76,12 +84,13 @@ class MerchantRoom(Room):
 
 
 class Find5GoldRoom(LootRoom):
-    def __init__(self):
-        super().__init__(items.Gold(5))
+    def __init__(self, item=items.Gold(5)):
+        self.item = item
+        super().__init__(item)
 
     def intro_text(self):
         return """
-        Someone dropped a 5 gold piece. You pick it up.
+        Someone dropped a 5 golden coins. You pick it up.
         """
 
 
@@ -136,7 +145,7 @@ import random
 
 class Gen_Current_Room():
     def gen():
-        rand = random.randint(1, 5)
+        rand = random.randint(1, 6)
         if rand == 1:
             return EmptyCavePath
         elif rand == 2:
