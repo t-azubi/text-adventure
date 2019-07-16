@@ -19,7 +19,7 @@ class Option:
             player.print_inventory()
             Option.desciption(player)
         else:
-            print(">Invalid Input!")
+            print(">Invalid Input! ")
             Option.desciption(player)
 
     def desciption2(player):
