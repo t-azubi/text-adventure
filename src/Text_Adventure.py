@@ -94,18 +94,36 @@ def modRoom(room, player):
     if room != Room.EmptyCavePath:
         room.modify_player(room(), player)
 
+
+def enemyRoom(room, player):
+    if room == Room.OgreRoom or room == Room.GiantSpiderRoom:
+        print(room.intro_text(room().enemy))
+        actions = room().available_actions()
+        for x in actions:
+            print(x.name)
+        while room().enemy.is_alive():
+            action = input(str(">Please type what you want to do\n"))
+            if action.upper() == "ATTACK":
+                player.attack(enemy=room().enemy)
+            else:
+                player.flee()
+                return
+    else:
+        print(room.intro_text(self=room))
+
 player = Character()
-Room.StartingRoom.intro_text(self=Room.Gen_Current_Room.gen())
+rooms = Room
+rooms.StartingRoom.intro_text(self=rooms)
 print("> You look around an find some items\n")
 Character.print_inventory(player)
 option = IdelOption.Option
 GenPaths.path_gen()
-room = Room.Gen_Current_Room.gen()
-print(room.intro_text(room))
+room = rooms.Gen_Current_Room.gen()
+enemyRoom(room=room, player=player)
 modRoom(room=room, player=player)
 while player.is_alive() and not player.victory:
     option.desciption(player)
     GenPaths.path_gen()
-    room = Room.Gen_Current_Room.gen()
-    print(room.intro_text(room))
+    room = rooms.Gen_Current_Room.gen()
+    enemyRoom(room=room, player=player)
     modRoom(room=room, player=player)
