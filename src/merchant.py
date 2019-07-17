@@ -1,30 +1,28 @@
 from Player import Character
-from items import Item
+from items 
 
 
 class Merchant:
     """A base class for the merchant"""
 
-    def __init__(self, name, gold, items):
+    def __init__(self, name, gold = 100, items):
 
         self.name = name
-        self.gold = gold
-        self.items = items
+        self.gold = items.Gold(100)
+        self.items = [items.Axe(1), items.Sword(1), items.Hammer(1)]
 
     def has_gold(self):
         return self.gold > 0
 
-
-merchant_items = ["sword", "axe", "hammer"]
-
+#hammer should be added to the items class
 
 ########
-if Merchant.gold > 0:
+if Merchant.gold == 0:
     print("You can sell items to the merchant.")
-elif Merchant.gold == 0:
+elif Merchant.gold > 100:
     print("You cant sell items to the merchant.")
 
-if Character.inventory. > 0  ### zugriff auf gold des characters ?
+if  Character.inventory[0].amount > 0  
     player can buy items from merchant
     elif
     player gold == 0
@@ -37,12 +35,26 @@ zuweisen von values zu den items in der liste ?
 
 
 ##player selling items
-
-merchant_items = ["sword", "axe", "hammer"]
-print(merchant_items)
-merchant_items.append(input("Which items do you want to sell? "))
+def sell(self, merchant):
+ for item in player_inventory 
+    print(item)
+ bool = False
+ item = (input("Which items do you want to sell? "))
+ for items in the_player.inventory:
+            if items.name.upper == item.upper():
+                if items.amount > 0 :
+                the_player.inventory[0].amount += items.value
+                items.amount -= 1
+                for mitems in merchant.items:
+                    if mitems.name == item.name:
+                    mitems.amount += item.amount
+                    mitems.value = mitems.base * mitems.amount
+                    bool = True
+                if bool == False:
+                    merchant.items.append(item)
 
 
 ##player buying items
-print(merchant_items)
+   for item in merchant_items 
+    print(item)
 merchant_items.remove(input("Which items do you want to buy? "))
