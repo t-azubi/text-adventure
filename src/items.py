@@ -1,83 +1,93 @@
 class Item():
     """The base class for all items"""
 
-    def __init__(self, name, description, value):
+    def __init__(self, name, description, value, amount, base):
         self.name = name
         self.description = description
         self.value = value
+        self.amount = amount
+        self.base = base
 
     def __str__(self):
-        return "{}\n{}\nValue: {}\n".format(self.name, self.description, self.value)
+        return "{}\n{}\nValue: {}\nAmount: {}\n".format(self.name, self.description, self.value, self.amount)
 
 
 class Weapon(Item):
-    def __init__(self, name, kind, dmg, value, broken, description):
+    def __init__(self, name, kind, dmg, value, broken, description, amount, base):
         self.name = name
         self.kind = kind
         self.dmg = dmg
         self.value = value
         self.broken = broken
         self.description = description
+        self.amount = amount
+        self.base = base
 
 
 class Rock(Weapon):
-    def __init__(self):
+    def __init__(self, amount, base=0):
+        self.amount = amount
+        self.base = base
         super().__init__(name="Rock",
                          kind="melee",
                          dmg=1,
-                         value=0,
+                         value=self.base * self.amount,
                          broken=False,
-                         description="A Rock at the size as your fist. It hopefully will be enough for the beginning "
+                         description="A Rock at the size as your fist. It hopefully will be enough for the beginning ",
+                         amount=amount,
+                         base=0
                          )
 
 
 class Dagger(Weapon):
-    def __init__(self):
-        super().__init__(name="Dagger",
-                         kind="melee",
+
                          dmg=5,
-                         value=10,
+                         value=self.base * self.amount,
                          broken=False,
-                         description="A small knife, now we can fight!"
+                         description="A small knife, now we can fight!",
+                         amount=amount,
+                         base=10
                          )
 
 
 class Bow(Weapon):
-    def __init__(self):
-        super().__init__(name="Bow",
-                         kind="ranged",
+
                          dmg=10,
-                         value=20,
+                         value=self.base * self.amount,
                          broken=False,
-                         description="A bow with some arrows, let's shoot some monsters."
+                         description="A bow with some arrows, let's shoot some monsters.",
+                         amount=amount,
+                         base=20
                          )
 
 
 class Sword(Weapon):
-    def __init__(self):
-        super().__init__(name="Sword",
-                         kind="melee",
+
                          dmg=15,
-                         value=25,
+                         value=self.base * self.amount,
                          broken=False,
-                         description="A sword, now we can defend your self against all"
+                         description="A sword, now we can defend your self against all",
+                         amount=amount,
+                         base=25
                          )
 
 
 class Axe(Weapon):
-    def __init__(self):
-        super().__init__(name="Axe",
-                         kind="melee",
+
                          dmg=18,
-                         value=35,
+                         value=base * self.amount,
                          broken=False,
-                         description="Off with their heads"
+                         description="Off with their heads",
+                         amount=amount
                          )
 
 
 class Gold(Item):
-    def __init__(self, amt):
-        self.amt = amt
+    def __init__(self, amount, base=1):
+        self.amount = amount
+        self.base = base
         super().__init__(name="Gold",
-                         description="A round coin with {} stamped on the front.".format(str(self.amt)),
-                         value=self.amt)
+                         description="A round coin with {} stamped on the front.".format(str(self.amount)),
+                         value=self.base * self.amount,
+                         amount=self.amount,
+                         base=1)
