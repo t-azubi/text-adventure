@@ -7,7 +7,8 @@ import items
 class Option:
 
     def desciption(player):
-        action = str(input(">Do you want to look around, walk out of this room or open you inventory? \n"))
+        action = str(
+            input(">Do you want to look around, walk out of this room, view your exp or open you inventory? \n"))
         action = re.sub("\n", "", action)
         action = re.sub("\s", "", action)
         if action.upper() == "LOOK":
@@ -15,6 +16,9 @@ class Option:
             Option.desciption2(player)
         elif action.upper() == "WALK":
             Option.walk_around(player)
+        elif action.upper() == "EXP":
+            player.print_exp()
+            Option.desciption(player)
         elif action.upper() == "INVENTORY":
             player.print_inventory()
             Option.desciption(player)
@@ -23,11 +27,14 @@ class Option:
             Option.desciption(player)
 
     def desciption2(player):
-        action = str(input(">Do you want to walk out of this room or open you inventory? \n"))
+        action = str(input(">Do you want to walk out of this room, view your exp or open you inventory? \n"))
         action = re.sub("\n", "", action)
         action = re.sub("\s", "", action)
         if action.upper() == "WALK":
             Option.walk_around(player)
+        elif action.upper() == "EXP":
+            player.print_exp()
+            Option.desciption(player)
         elif action.upper() == "INVENTORY":
             player.print_inventory()
             Option.desciption(player)
