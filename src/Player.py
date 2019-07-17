@@ -10,11 +10,6 @@ class Character:
     def is_alive(self):
         return self.hp > 0
 
-    def do_action(self, action, **kwargs):
-        action_method = getattr(self, action.method.__name__)
-        if action_method:
-            action_method(**kwargs)
-
     def print_inventory(self):
         print("#################################################")
         print("\nINVENTORY: \n")
@@ -27,17 +22,22 @@ class Character:
         max_dmg = 0
         for i in self.inventory:
             if isinstance(i, items.Weapon):
-                if i.damage > max_dmg:
-                    max_dmg = i.damage
+                if i.dmg > max_dmg:
+                    max_dmg = i.dmg
                     best_weapon = i
 
         print("You use {} against {}!".format(best_weapon.name, enemy.name))
-        enemy.hp -= best_weapon.damage
+        dmg = best_weapon.dmg - enemy.armor
+        if dmg > 0:
+            enemy.hp -= dmg
+        else:
+            print(">You can't break the armor of {}, you should flee".format(enemy.name))
         if not enemy.is_alive():
             print("You killed {}!".format(enemy.name))
         else:
-            print("{} HP is {}.".format(enemy.name, enemy.hp))
+            self.hp -= enemy.damage
+            print("{} HP is {}. Your HP is {}".format(enemy.name, enemy.hp, self.hp))
 
     def flee(self):
         """Moves the player randomly to an adjacent tile"""
-        print("> You ran down a random path hopefully the next room will be safer")
+        print("> You ran down a random path, hopefully the next room will be safer")
