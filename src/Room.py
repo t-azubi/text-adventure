@@ -105,17 +105,18 @@ class EnemyRoom(Room):
 
     def available_actions(self):
         if self.enemy.is_alive():
-            return [actions.Flee(tile=self), actions.Attack(enemy=self.enemy)]
+            return [actions.Flee(), actions.Attack(enemy=self.enemy)]
         else:
             return self.adjacent_moves()
 
 
 class GiantSpiderRoom(EnemyRoom):
-    def __init__(self):
-        super().__init__(Enemies.GiantSpider())
+    def __init__(self, enemy=Enemies.GiantSpider()):
+        self.enemy = enemy
+        super().__init__(self.enemy)
 
     def intro_text(self):
-        if self.enemy.is_alive():
+        if self.is_alive():
             return """
             A giant spider jumps down from its web in front of you!
             """
@@ -126,11 +127,12 @@ class GiantSpiderRoom(EnemyRoom):
 
 
 class OgreRoom(EnemyRoom):
-    def __init__(self):
-        super().__init__(Enemies.Ogre())
+    def __init__(self, enemy=Enemies.Ogre()):
+        self.enemy = enemy
+        super().__init__(self.enemy)
 
     def intro_text(self):
-        if self.enemy.is_alive():
+        if self.is_alive():
             return """
             An ogre is blocking your path!
             """
@@ -145,16 +147,16 @@ import random
 
 class Gen_Current_Room():
     def gen():
-        rand = random.randint(1, 6)
+        rand = random.randint(0, 6)
         if rand == 1:
             return EmptyCavePath
         elif rand == 2:
             return Find5GoldRoom
         elif rand == 3:
             return FindDaggerRoom
-        elif random == 4:
+        elif rand == 4:
             return OgreRoom
-        elif random == 5:
+        elif rand == 5:
             return GiantSpiderRoom
         else:
             return EmptyCavePath

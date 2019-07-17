@@ -41,6 +41,11 @@ class Rock(Weapon):
 
 class Dagger(Weapon):
 
+    def __init__(self, amount, base=10):
+        self.amount = amount
+        self.base = base
+        super().__init__(name="Dagger",
+                         kind="melee",
                          dmg=5,
                          value=self.base * self.amount,
                          broken=False,
@@ -52,6 +57,11 @@ class Dagger(Weapon):
 
 class Bow(Weapon):
 
+    def __init__(self, amount, base=20):
+        self.amount = amount
+        self.base = base
+        super().__init__(name="Bow",
+                         kind="ranged",
                          dmg=10,
                          value=self.base * self.amount,
                          broken=False,
@@ -62,7 +72,11 @@ class Bow(Weapon):
 
 
 class Sword(Weapon):
-
+    def __init__(self, amount, base=25):
+        self.amount = amount
+        self.base = base
+        super().__init__(name="Sword",
+                         kind="melee",
                          dmg=15,
                          value=self.base * self.amount,
                          broken=False,
@@ -73,12 +87,17 @@ class Sword(Weapon):
 
 
 class Axe(Weapon):
-
+    def __init__(self, amount, base=35):
+      self.amount = amount
+      self.base = base
+        super().__init__(name="Axe",
+                         kind="melee",
                          dmg=18,
                          value=base * self.amount,
                          broken=False,
                          description="Off with their heads",
-                         amount=amount
+                         amount=amount,
+                         base = 35
                          )
 
 

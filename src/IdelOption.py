@@ -10,9 +10,26 @@ class Option:
         action = str(input(">Do you want to look around, walk out of this room or open you inventory? \n"))
         action = re.sub("\n", "", action)
         action = re.sub("\s", "", action)
-        if action.upper() == "LOOK" or action.upper() == "look":
+        if action.upper() == "LOOK":
             Option.look_around(player)
-r.print_inventory()
+            Option.desciption2(player)
+        elif action.upper() == "WALK":
+            Option.walk_around(player)
+        elif action.upper() == "INVENTORY":
+            player.print_inventory()
+            Option.desciption(player)
+        else:
+            print(">Invalid Input! ")
+            Option.desciption(player)
+
+    def desciption2(player):
+        action = str(input(">Do you want to walk out of this room or open you inventory? \n"))
+        action = re.sub("\n", "", action)
+        action = re.sub("\s", "", action)
+        if action.upper() == "WALK":
+            Option.walk_around(player)
+        elif action.upper() == "INVENTORY":
+            player.print_inventory()
             Option.desciption(player)
         else:
             print(">Invalid Input! ")
