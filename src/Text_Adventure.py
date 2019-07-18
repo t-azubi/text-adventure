@@ -108,12 +108,10 @@ def enemyRoom(room, player, roomCounter):
                 player.attack(enemy=room.enemy)
             else:
                 player.flee()
-<<<<<<< HEAD
                 Room.Gen_Current_Room.gen()
                 return player
-            enemy = room.enemy
+        enemy = room.enemy
         player.exp[1] += enemy.exp * (1 + (roomCounter / 10))
-=======
                 return
     elif room == Room.MerchantRoom:
         print(room.intro_text(self=room))
@@ -127,7 +125,6 @@ def enemyRoom(room, player, roomCounter):
                 action = input(str("\nDo you want to buy or sell something other or leave?"))
             else:
                 action = input()
->>>>>>> Richard
     else:
         print(room.intro_text())
     return player
