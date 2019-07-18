@@ -91,7 +91,6 @@ class Axe(Weapon):
       self.amount = amount
       self.base = base
       super().__init__(name="Axe",
-<<<<<<< HEAD
                        kind="melee",
                        dmg=18,
                        value=base * self.amount,
@@ -100,16 +99,6 @@ class Axe(Weapon):
                        amount=amount,
                        base = 35
                        )
-=======
-                         kind="melee",
-                         dmg=18,
-                         value=base * self.amount,
-                         broken=False,
-                         description="Off with their heads",
-                         amount=amount,
-                         base = 35
-                         )
->>>>>>> Richard
 
 
 class Gold(Item):

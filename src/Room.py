@@ -153,12 +153,8 @@ class Gen_Current_Room():
         elif rand == 4:
             return OgreRoom()
         elif rand == 5:
-<<<<<<< HEAD
             return GiantSpiderRoom()
-=======
-            return GiantSpiderRoom
         elif rand == 6:
-            return MerchantRoom
->>>>>>> Richard
+            return MerchantRoom()
         else:
             return EmptyCavePath()
