@@ -1,6 +1,7 @@
 import Enemies
 import actions
 import items
+import merchant
 
 
 class Room:
@@ -75,13 +76,15 @@ class FindDaggerRoom(LootRoom):
 
 class MerchantRoom(Room):
     def __init__(self):
-        super().__init__()
+        self.merchant = merchant
+        super().__init__("merchantroom")
 
     def intro_text(self):
         return """
         It seems you found a Merchant just ask him what he have to offer you
         """
-
+    def modify_player(self, the_player):
+        print("\n>You leave the merchant")
 
 class Find5GoldRoom(LootRoom):
     def __init__(self, item=items.Gold(5)):
@@ -147,7 +150,7 @@ import random
 
 class Gen_Current_Room():
     def gen():
-        rand = random.randint(0, 6)
+        rand = random.randint(6, 6)
         if rand == 1:
             return EmptyCavePath
         elif rand == 2:
@@ -158,5 +161,7 @@ class Gen_Current_Room():
             return OgreRoom
         elif rand == 5:
             return GiantSpiderRoom
+        elif rand == 6:
+            return MerchantRoom
         else:
             return EmptyCavePath

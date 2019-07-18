@@ -7,6 +7,7 @@ import IdelOption
 import Room
 from Classes import Quotes, GenPaths
 from Player import Character
+import merchant
 
 
 ############### Changes to be made ###############
@@ -108,6 +109,18 @@ def enemyRoom(room, player):
             else:
                 player.flee()
                 return
+    elif room == Room.MerchantRoom:
+        print(room.intro_text(self=room))
+        action = input(str("> Do you want to sell, buy or leave?\n"))
+        merch = merchant.Merchant
+        while not action.lower() == "leave":
+            if action.upper() == "SELL":
+                merch().sell( player)
+            elif action.upper() == "BUY":
+                merch().buy( player)
+                action = input(str("\nDo you want to buy or sell something other or leave?"))
+            else:
+                action = input()
     else:
         print(room.intro_text(self=room))
 

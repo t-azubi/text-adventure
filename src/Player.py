@@ -3,7 +3,7 @@ import items
 
 class Character:
     def __init__(self):
-        self.inventory = [items.Gold(15), items.Rock(1)]
+        self.inventory = [items.Gold(25), items.Rock(1)]
         self.hp = 100
         self.victory = False
 
