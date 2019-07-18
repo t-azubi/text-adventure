@@ -9,6 +9,7 @@ from Classes import Quotes, GenPaths
 from Player import Character
 
 
+
 ############### Changes to be made ###############
 #
 # input auf (done)
@@ -24,6 +25,7 @@ from Player import Character
 #
 #
 ##################################################
+
 
 
 def displayIntro():
