@@ -16,7 +16,9 @@ class Merchant:
             for item in the_player.inventory:
                 print("\nItem: {} , Amount: {}, base Value: {}\n".format(item.name, item.amount, item.base))
             bool = False
-            item = (input("Which items do you want to sell? "))
+            item = (input("Which items do you want to sell or do you want to leave? "))
+            if item.upper() == "LEAVE":
+                return
             for items in the_player.inventory:
                 if items.name.upper() == item.upper():
                     if items.amount > 0:
@@ -42,8 +44,10 @@ class Merchant:
         bool = False
         for item in merchant.items:
             print("\nItem: {} , Amount: {}, base Value: {}\n".format(item.name, item.amount, item.base))
-        what = input(str(">What would you like to buy?"))
+        what = input(str(">You have {} Gold. What would you like to buy, or do you want to leave?".format(the_player.inventory[0].amount)))
         for mitems in merchant.items:
+            if what.upper() == "LEAVE":
+                return
             if mitems.name.upper() == what.upper() and not what.upper() == "GOLD":
                 if mitems.base > the_player.inventory[0].amount:
                     print("> You do not have enough gold")

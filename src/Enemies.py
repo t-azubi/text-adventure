@@ -29,7 +29,7 @@ class Spider(Enemy):
 
 
 class Troll(Enemy):
-    def __iadd__(self):
+    def __init__(self):
         super().__init__(name="Troll", hp=20, damage=2, armor=2, exp=15)
 
 
@@ -51,7 +51,7 @@ class Wolf(Enemy):
 
 
 class Ghost(Enemy):
-    def __iadd__(self):
+    def __init__(self):
         super().__init__(name="Ghost", hp=5, damage=10, armor=2, exp=20)
 
 

@@ -8,16 +8,16 @@ class Option:
 
     def desciption(player):
         action = str(
-            input(">Do you want to look around, walk out of this room, view your exp or open you inventory? \n"))
+            input(">Do you want to look around, walk out of this room, view your stats or open you inventory? \n"))
         action = re.sub("\n", "", action)
         action = re.sub("\s", "", action)
         if action.upper() == "LOOK":
             Option.look_around(player)
-            Option.desciption2(player)
+            Option.desciption(player)
         elif action.upper() == "WALK":
             Option.walk_around(player)
-        elif action.upper() == "EXP":
-            player.print_exp()
+        elif action.upper() == "STATS":
+            player.print_stats()
             Option.desciption(player)
         elif action.upper() == "INVENTORY":
             player.print_inventory()
@@ -33,14 +33,14 @@ class Option:
         if action.upper() == "WALK":
             Option.walk_around(player)
         elif action.upper() == "EXP":
-            player.print_exp()
-            Option.desciption(player)
+            player.print_stats()
+            Option.desciption2(player)
         elif action.upper() == "INVENTORY":
             player.print_inventory()
-            Option.desciption(player)
+            Option.desciption2(player)
         else:
             print(">Invalid Input! ")
-            Option.desciption(player)
+            Option.desciption2(player)
 
     def look_around(player):
         quote = (">You look around,")
