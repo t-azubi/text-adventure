@@ -4,11 +4,9 @@ import items
 
 
 class Room:
+    def __init__(self, name):
+        self.name = name
     """The base class for a tile within the world space"""
-
-    def __init__(self, size):
-        self.size = size
-
     def intro_text(self):
         """Information to be displayed when the player moves into this tile."""
         raise NotImplementedError()
@@ -19,7 +17,8 @@ class Room:
 
 
 class StartingRoom(Room):
-
+    def __init__(self):
+        super().__init__("startingroom")
     def intro_text(self):
         return """
         You find yourself in a cave with a flickering torch on the wall.
@@ -31,6 +30,9 @@ class StartingRoom(Room):
 
 
 class EmptyCavePath(Room):
+
+    def __init__(self):
+        super().__init__("emptyroom")
     def intro_text(self):
         return """
         Just an empty Room there is nothing. You must forge onwards.
@@ -44,8 +46,10 @@ class EmptyCavePath(Room):
 class LootRoom(Room):
     """A room that adds something to the player's inventory"""
 
-    def __init__(self, item):
+    def __init__(self, item, name):
         self.item = item
+        self.name = name
+        super().__init__("lootroom")
 
     def add_loot(self, the_player):
         bool = False
@@ -64,7 +68,7 @@ class LootRoom(Room):
 class FindDaggerRoom(LootRoom):
     def __init__(self, item=items.Dagger(1)):
         self.item = item
-        super().__init__(item)
+        super().__init__(item, "daggerroom")
 
     def intro_text(self):
         return """
@@ -86,7 +90,7 @@ class MerchantRoom(Room):
 class Find5GoldRoom(LootRoom):
     def __init__(self, item=items.Gold(5)):
         self.item = item
-        super().__init__(item)
+        super().__init__(item, "goldroom")
 
     def intro_text(self):
         return """
@@ -97,6 +101,7 @@ class Find5GoldRoom(LootRoom):
 class EnemyRoom(Room):
     def __init__(self, enemy):
         self.enemy = enemy
+        self.name = enemy.name.lower() + "room"
 
     def modify_player(self, the_player):
         if self.enemy.is_alive():
@@ -106,8 +111,6 @@ class EnemyRoom(Room):
     def available_actions(self):
         if self.enemy.is_alive():
             return [actions.Flee(), actions.Attack(enemy=self.enemy)]
-        else:
-            return self.adjacent_moves()
 
 
 class GiantSpiderRoom(EnemyRoom):
@@ -116,13 +119,8 @@ class GiantSpiderRoom(EnemyRoom):
         super().__init__(self.enemy)
 
     def intro_text(self):
-        if self.is_alive():
-            return """
+        return """
             A giant spider jumps down from its web in front of you!
-            """
-        else:
-            return """
-            The corpse of a dead spider rots on the ground.
             """
 
 
@@ -132,13 +130,8 @@ class OgreRoom(EnemyRoom):
         super().__init__(self.enemy)
 
     def intro_text(self):
-        if self.is_alive():
-            return """
+        return """
             An ogre is blocking your path!
-            """
-        else:
-            return """
-            A dead ogre reminds you of your triumph.
             """
 
 
@@ -149,14 +142,14 @@ class Gen_Current_Room():
     def gen():
         rand = random.randint(0, 6)
         if rand == 1:
-            return EmptyCavePath
+            return EmptyCavePath()
         elif rand == 2:
-            return Find5GoldRoom
+            return Find5GoldRoom()
         elif rand == 3:
-            return FindDaggerRoom
+            return FindDaggerRoom()
         elif rand == 4:
-            return OgreRoom
+            return OgreRoom()
         elif rand == 5:
-            return GiantSpiderRoom
+            return GiantSpiderRoom()
         else:
-            return EmptyCavePath
+            return EmptyCavePath()

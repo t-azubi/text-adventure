@@ -4,6 +4,7 @@ import items
 class Character:
     def __init__(self):
         self.inventory = [items.Gold(15), items.Rock(1)]
+        self.exp = [1, 0]
         self.hp = 100
         self.victory = False
 
@@ -16,6 +17,24 @@ class Character:
         for item in self.inventory:
             print(item)
         print("#################################################\n")
+
+    def get_needed_exp(self):
+        lvl = self.exp[0]
+        max = 100.0
+        for x in range(0, lvl):
+            max += x * 1.2
+        exp = max - self.exp[1]
+        return exp
+
+    def print_exp(self):
+        exp = self.get_needed_exp()
+        if exp < 1:
+            self.exp[0] += 1
+            exp = self.get_needed_exp()
+        else:
+            print("#################################################\n")
+            print("> You are lvl {}. You need {} Exp to reach the next lvl.".format(self.exp[0], exp))
+            print("\n#################################################\n")
 
     def attack(self, enemy):
         best_weapon = None

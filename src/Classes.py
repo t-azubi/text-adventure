@@ -23,14 +23,16 @@ class GenPaths:
             GenPaths.make_cool_quote(action)
 
     def path_handling(counter):
+        a = GenPaths
         if counter == 2:
             action = str(input(">There are two ways you can go, which will you choose. Enter 1 or 2 to choose your path!\n"))
         elif counter == 3:
             action = str(input(">There are three ways you can go, choose wisely. Enter 1, 2 or 3 to choose your path!\n"))
+        while not action.isdigit():
+            action = str(input(">Please enter a number from 1 to {}".format(counter)))
 
-        if int(action) > counter or int(action) < 1:
-            print("> You have to chosen a valid path!")
-            GenPaths.path_Handling(counter)
+        while (int(action) > counter or int(action) < 1):
+            action = str(input("> You have to chosen a valid path!"))
 
         return action
 

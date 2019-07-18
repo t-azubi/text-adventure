@@ -88,15 +88,15 @@ class Axe(Weapon):
     def __init__(self, amount, base=35):
       self.amount = amount
       self.base = base
-        super().__init__(name="Axe",
-                         kind="melee",
-                         dmg=18,
-                         value=base * self.amount,
-                         broken=False,
-                         description="Off with their heads",
-                         amount=amount,
-                         base = 35
-                         )
+      super().__init__(name="Axe",
+                       kind="melee",
+                       dmg=18,
+                       value=base * self.amount,
+                       broken=False,
+                       description="Off with their heads",
+                       amount=amount,
+                       base = 35
+                       )
 
 
 class Gold(Item):
