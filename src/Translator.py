@@ -113,37 +113,51 @@ LANGCODES = dict(map(reversed, LANGUAGES.items()))
 
 translator = Translator()
 
-print(translator.detect('이 문장은 한글로 쓰여졌습니다.'))
+#print(translator.detect('이 문장은 한글로 쓰여졌습니다.'))
 
-translations = translator.translate(["The quick brown fox", "jumps over", "the lazy dog"], dest="de")
-for translation in translations:
-    print(translation.text)
-
-
-
-detected_lang = 0
-
-class Translator:
-    def __int__(self):
-        self.language = True
-
-    def detect_language(self):
-        translator.detect(language_detect)
-        print()
+#translations = translator.translate(["The quick brown fox", "jumps over", "the lazy dog"], dest="de")
+#for translation in translations:
+ #   print(translation.text)
 
 
+#class Translator:
+   # def __int__(self):
+    #    self.language = True
+#
+ #   def detect_language(self):
+  #      translator.detect(language_detect)
+   #     print()
 
-def lang_detect(lang):
-    language_detect = input("Please enter the language you want to play in")
-    translator.detect(language_detect)
-    return lang
+
+#def lang_detect(lang):
+ #   language_detect = translator.detect(input("Please enter the language you want to play in"))
+  #  print(language_detect)
+   # translator.detect(lang)
+    #translated = translator.translate(language_detect, dest=lang())
+    #print(translated)
+    #return lang
+
+#lang=True
+
+#lang_detect(lang)
+u_input = ""
+language = ""
+translated = ""
+
+#if input("language"):
+u_input = str(input("enter a sentence"))
+print("en - english\n"
+      "ger - german\n"
+      "fr - french\n"
+      "es - spanish\n")
+language = str(input("Enter one of the following language abreviations"))
+
+translated = translator.translate(u_input, dest=language)
+
+print(translated.text)
 
 
-lang =""
-lang_detect(lang)
 
-language_detect = str(input("Please enter the language you want to play in"))
 
-translated = translator.translate(lang_detect, dest=lang())
-
-print(translated)
+#translated = translator.translate(language_detect, dest=language_detect)
+#print(translated)
