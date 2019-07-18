@@ -3,8 +3,12 @@ import items
 
 class Character:
     def __init__(self):
+<<<<<<< HEAD
         self.inventory = [items.Gold(15), items.Rock(1)]
         self.exp = [1, 0]
+=======
+        self.inventory = [items.Gold(25), items.Rock(1)]
+>>>>>>> Richard
         self.hp = 100
         self.victory = False
 

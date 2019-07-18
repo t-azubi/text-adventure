@@ -40,6 +40,7 @@ class Rock(Weapon):
 
 
 class Dagger(Weapon):
+
     def __init__(self, amount, base=10):
         self.amount = amount
         self.base = base
@@ -55,6 +56,7 @@ class Dagger(Weapon):
 
 
 class Bow(Weapon):
+
     def __init__(self, amount, base=20):
         self.amount = amount
         self.base = base
@@ -89,6 +91,7 @@ class Axe(Weapon):
       self.amount = amount
       self.base = base
       super().__init__(name="Axe",
+<<<<<<< HEAD
                        kind="melee",
                        dmg=18,
                        value=base * self.amount,
@@ -97,6 +100,16 @@ class Axe(Weapon):
                        amount=amount,
                        base = 35
                        )
+=======
+                         kind="melee",
+                         dmg=18,
+                         value=base * self.amount,
+                         broken=False,
+                         description="Off with their heads",
+                         amount=amount,
+                         base = 35
+                         )
+>>>>>>> Richard
 
 
 class Gold(Item):
@@ -104,7 +117,7 @@ class Gold(Item):
         self.amount = amount
         self.base = base
         super().__init__(name="Gold",
-                         description="A round coin with {} stamped on the front.".format(str(self.amount)),
+                         description="A round shiny Coin",
                          value=self.base * self.amount,
                          amount=self.amount,
                          base=1)
