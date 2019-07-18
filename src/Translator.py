@@ -113,51 +113,20 @@ LANGCODES = dict(map(reversed, LANGUAGES.items()))
 
 translator = Translator()
 
-#print(translator.detect('이 문장은 한글로 쓰여졌습니다.'))
 
-#translations = translator.translate(["The quick brown fox", "jumps over", "the lazy dog"], dest="de")
-#for translation in translations:
- #   print(translation.text)
-
-
-#class Translator:
-   # def __int__(self):
-    #    self.language = True
-#
- #   def detect_language(self):
-  #      translator.detect(language_detect)
-   #     print()
-
-
-#def lang_detect(lang):
- #   language_detect = translator.detect(input("Please enter the language you want to play in"))
-  #  print(language_detect)
-   # translator.detect(lang)
-    #translated = translator.translate(language_detect, dest=lang())
-    #print(translated)
-    #return lang
-
-#lang=True
-
-#lang_detect(lang)
 u_input = ""
 language = ""
 translated = ""
 
-#if input("language"):
-u_input = str(input("enter a sentence"))
-print("en - english\n"
-      "ger - german\n"
-      "fr - french\n"
-      "es - spanish\n")
-language = str(input("Enter one of the following language abreviations"))
+class Translator:
+    def __int__(self):
+        self.language = True
 
-translated = translator.translate(u_input, dest=language)
-
-print(translated.text)
+    def lang_detect(lang):
+        u_input = str(input("enter a sentence"))
+        language = str(input("Enter your language abreviations(eg: en for english or de for german) "))
+        translated = translator.translate(u_input, dest=language)
+        print(translated.text)
 
 
-
-
-#translated = translator.translate(language_detect, dest=language_detect)
-#print(translated)
+print("Teset")
