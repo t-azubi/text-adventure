@@ -9,20 +9,15 @@ class Quotes:
 
 
 class GenPaths:
-    def __init__(self, counter, action, quote):
-        self.counter = counter
-        self.action = action
-        self.quote = quote
-
-    def path_gen():
+    def path_gen(self):
         counter = random.randint(1, 3)
         if counter == 1:
             print(">There is only one path that leads you out of this room")
         else:
-            action = GenPaths.path_handling(counter)
-            GenPaths.make_cool_quote(action)
+            action = self.path_handling(counter)
+            self.make_cool_quote(action)
 
-    def path_handling(counter):
+    def path_handling(self,counter):
         a = GenPaths
         if counter == 2:
             action = str(input(">There are two ways you can go, which will you choose. Enter 1 or 2 to choose your path!\n"))

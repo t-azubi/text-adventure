@@ -138,14 +138,14 @@ Room.StartingRoom.intro_text(Room)
 print("> You look around an find some items\n")
 Character.print_inventory(player)
 option = IdelOption.Option
-GenPaths.path_gen()
+GenPaths().path_gen()
 player.roomcounter += 1
 room = Room.Gen_Current_Room().gen()
 player = enemyRoom(room=room, player=player)
 modRoom(room=room, player=player)
 while player.is_alive() and not player.victory:
     option.desciption(player)
-    GenPaths.path_gen()
+    GenPaths().path_gen()
     player.roomcounter += 1
     room = Room.Gen_Current_Room().gen()
     player = enemyRoom(room=room, player=player)
