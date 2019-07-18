@@ -41,7 +41,7 @@ class Rock(Weapon):
 
 class Dagger(Weapon):
 
-    def __init__(self, amount, base=10):
+    def __init__(self, amount, base=5):
         self.amount = amount
         self.base = base
         super().__init__(name="Dagger",
@@ -51,13 +51,13 @@ class Dagger(Weapon):
                          broken=False,
                          description="A small knife, now we can fight!",
                          amount=amount,
-                         base=10
+                         base= 5
                          )
 
 
 class Bow(Weapon):
 
-    def __init__(self, amount, base=20):
+    def __init__(self, amount, base=40):
         self.amount = amount
         self.base = base
         super().__init__(name="Bow",
@@ -67,12 +67,12 @@ class Bow(Weapon):
                          broken=False,
                          description="A bow with some arrows, let's shoot some monsters.",
                          amount=amount,
-                         base=20
+                         base=40
                          )
 
 
 class Sword(Weapon):
-    def __init__(self, amount, base=25):
+    def __init__(self, amount, base=65):
         self.amount = amount
         self.base = base
         super().__init__(name="Sword",
@@ -82,12 +82,12 @@ class Sword(Weapon):
                          broken=False,
                          description="A sword, now we can defend your self against all",
                          amount=amount,
-                         base=25
+                         base= 65
                          )
 
 
 class Axe(Weapon):
-    def __init__(self, amount, base=35):
+    def __init__(self, amount, base=70):
       self.amount = amount
       self.base = base
       super().__init__(name="Axe",
@@ -97,7 +97,7 @@ class Axe(Weapon):
                        broken=False,
                        description="Off with their heads",
                        amount=amount,
-                       base = 35
+                       base = 130
                        )
 
 
@@ -110,3 +110,49 @@ class Gold(Item):
                          value=self.base * self.amount,
                          amount=self.amount,
                          base=1)
+
+class Armor(Item):
+    def __init__(self,description, value, name, amount, base, armor, part):
+        self.name = name
+        self.description = description
+        self.value = value
+        self.amount = amount
+        self.base = base
+        self.base = base
+        self.armor = armor
+
+class Leather_ChestPlate(Armor):
+    def __init__(self, amount, base=10):
+        self.amount = amount
+        self.base = base
+        super().__init__(name = "Leather Chest Plate",
+                         description = "A very tattered leather chestplate.",
+                         value=self.base * self.amount,
+                         amount=amount,
+                         base=10,
+                         armor=1,
+                         part="chest")
+
+class Leather_Cap(Armor):
+    def __init__(self, amount , base = 5):
+        self.amount = amount
+        self.base = base
+        super().__init__(name = "Leather Cap",
+                         description = "A leathern cap.",
+                         value=self.base * self.amount,
+                         amount=amount,
+                         base=5,
+                         armor=1,
+                         part="head")
+
+class Wooden_Shield(Armor):
+    def __init__(self, amount , base = 15):
+        self.amount = amount
+        self.base = base
+        super().__init__(name="Wooden Shield",
+                         description="A wooden shield, may it help.",
+                         value=self.base * self.amount,
+                         amount=amount,
+                         base=5,
+                         armor=1,
+                         part="shield")

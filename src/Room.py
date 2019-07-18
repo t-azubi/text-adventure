@@ -108,7 +108,7 @@ class EnemyRoom(Room):
 
     def modify_player(self, the_player):
         mult = the_player.exp[0]
-        multi = 1 + (mult/10) + the_player.roomcounter/10
+        multi = 1 + (mult/10) * the_player.roomcounter/10
         self.enemy.hp *= multi
         self.enemy.hp =round(self.enemy.hp, 1)
         self.enemy.damage *= multi
@@ -117,11 +117,29 @@ class EnemyRoom(Room):
             the_player.hp = the_player.hp - self.enemy.damage
             the_player.hp = round(the_player.hp, 1)
             print("Enemy does {} damage. You have {} HP remaining.".format(self.enemy.damage, the_player.hp))
+    def revive(self):
+        if self.enemy.name == Enemies.GiantSpider().name:
+            self.enemy = Enemies.GiantSpider()
+        elif self.enemy.name == Enemies.Spider().name:
+            self.enemy = Enemies.Spider()
+        elif self.enemy.name == Enemies.Troll().name:
+            self.enemy = Enemies.Troll()
+        elif self.enemy.name == Enemies.Wolf().name:
+            self.enemy = Enemies.Wolf()
+        elif self.enemy.name == Enemies.Bat().name:
+            self.enemy = Enemies.Bat()
+        elif self.enemy.name == Enemies.Ghost().name:
+            self.enemy = Enemies.Ghost()
+        elif self.enemy.name == Enemies.Ogre().name:
+            self.enemy = Enemies.Ogre()
+
+        return  self.enemy
 
     def available_actions(self):
         if self.enemy.is_alive():
             return [actions.Flee(), actions.Attack(enemy=self.enemy)]
-
+        else:
+            return [actions.Flee(), actions.Attack(self.revive())]
 
 class GiantSpiderRoom(EnemyRoom):
     def __init__(self, enemy=Enemies.GiantSpider()):
@@ -129,8 +147,6 @@ class GiantSpiderRoom(EnemyRoom):
         super().__init__(self.enemy)
 
     def intro_text(self):
-        if not self.enemy.is_alive:
-            self.enemy = Enemies.GiantSpider()
         return """
             A giant spider jumps down from its web in front of you!
             """
@@ -140,8 +156,7 @@ class SpiderRoom(EnemyRoom):
         super().__init__(self.enemy)
 
     def intro_text(self):
-        if not self.enemy.is_alive:
-            self.enemy = Enemies.Spider()
+
         return """
             A dog-sized spider crawls out of a corner of the room towards you, what do you want to do?
             """
@@ -152,8 +167,6 @@ class TrollRoom(EnemyRoom):
         super().__init__(self.enemy)
 
     def intro_text(self):
-        if not self.enemy.is_alive:
-            self.enemy = Enemies.Troll()
         return """
             You come into the room and just manage to save yourself from a table flying towards you.
             A troll comes towards you.
@@ -165,8 +178,6 @@ class WolfRoom(EnemyRoom):
         super().__init__(self.enemy)
 
     def intro_text(self):
-        if not self.enemy.is_alive:
-            self.enemy = Enemies.Wolve()
         return """
             You see a wolf standing over a dead body. He growls at you.
             """
@@ -177,8 +188,6 @@ class GhostRoom(EnemyRoom):
         super().__init__(self.enemy)
 
     def intro_text(self):
-        if not self.enemy.is_alive:
-            self.enemy = Enemies.Ghost()
         return """
             From a skeleton in the corner of the room rises a grey foul spirit with a homicidal look at you
             """
@@ -189,8 +198,6 @@ class OgreRoom(EnemyRoom):
         super().__init__(self.enemy)
 
     def intro_text(self):
-        if not self.enemy.is_alive:
-            self.enemy = Enemies.Ogre()
         return """
             An ogre is blocking your path!
             """
@@ -202,8 +209,6 @@ class BatRoom(EnemyRoom):
         super().__init__(self.enemy)
 
     def intro_text(self):
-        if not self.enemy.is_alive:
-            self.enemy = Enemies.Bat()
         return """
             A bat tries to reach your neck and taste your blood.
             """
@@ -246,7 +251,7 @@ class Gen_Current_Room():
             return Find5GoldRoom()
 
     def gen(self):
-        rand = random.randint(1, 5)
+        return  MerchantRoom()
         if  rand % 3 == 0:
             return self.get_lootroom()
         elif rand % 3 == 1:

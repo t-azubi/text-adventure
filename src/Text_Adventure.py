@@ -116,11 +116,14 @@ def enemyRoom(room, player):
         exp = enemy.exp * (1 + (player.roomcounter / 10))
         print(">{} drops {} exp.".format(enemy.name, exp))
         player.exp[1] += exp
+        player.exp = player.update_lvl()
         return player
     elif room.name == "merchantroom":
         print(room.intro_text())
         action = input(str("> Do you want to sell, buy or leave?\n"))
         merch = merchant.Merchant
+        x = merch().gen_listofitems()
+        merch.items = x
         while not action.lower() == "leave":
             if action.upper() == "SELL":
                 merch().sell( player)

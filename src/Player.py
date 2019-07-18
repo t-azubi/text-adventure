@@ -7,6 +7,7 @@ class Character:
         self.exp = [1, 0]
         self.hp = 100
         self.victory = False
+        self.armor = 0
         self.roomcounter = 0
 
     def is_alive(self):
@@ -21,12 +22,18 @@ class Character:
 
     def get_needed_exp(self):
         lvl = self.exp[0]
-        max = 100.0
-        for x in range(0, lvl):
-            max += x * 1.2
+        max = 100
+        for x in range(1, lvl):
+            max += max * 1.2
         exp = max - self.exp[1]
         return exp
 
+    def update_lvl(self):
+        exp = self.get_needed_exp()
+        if exp < 1:
+            self.exp[0] += 1
+            exp = self.get_needed_exp()
+        return self.exp
     def print_stats(self):
         exp = self.get_needed_exp()
         if exp < 1:
@@ -42,7 +49,7 @@ class Character:
                         best_weapon = i
             print("#################################################\n")
             print (">You passed {} rooms.\n".format(self.roomcounter))
-            print(">You have {} Hp, {} Armor and your best weapon does {} damage.\n".format(self.hp, "0",best_weapon.dmg))
+            print(">You have {} Hp, {} Armor and your best weapon does {} damage.\n".format(self.hp, self.armor,best_weapon.dmg))
             print(">You are lvl {}. You need {} Exp to reach the next lvl.".format(self.exp[0], exp))
             print("\n#################################################\n")
 
