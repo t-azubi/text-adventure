@@ -107,9 +107,15 @@ class EnemyRoom(Room):
         self.name = "enemyroom"
 
     def modify_player(self, the_player):
-
+        mult = the_player.exp[0]
+        multi = 1 + (mult/10) + the_player.roomcounter/10
+        self.enemy.hp *= multi
+        self.enemy.hp =round(self.enemy.hp, 1)
+        self.enemy.damage *= multi
+        self.enemy.damage = round(self.enemy.damage, 1)
         if self.enemy.is_alive():
             the_player.hp = the_player.hp - self.enemy.damage
+            the_player.hp = round(the_player.hp, 1)
             print("Enemy does {} damage. You have {} HP remaining.".format(self.enemy.damage, the_player.hp))
 
     def available_actions(self):

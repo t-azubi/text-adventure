@@ -124,6 +124,7 @@ def enemyRoom(room, player):
         while not action.lower() == "leave":
             if action.upper() == "SELL":
                 merch().sell( player)
+                action = input(str("\nDo you want to buy or sell something other or leave?"))
             elif action.upper() == "BUY":
                 merch().buy( player)
                 action = input(str("\nDo you want to buy or sell something other or leave?"))

@@ -31,7 +31,7 @@ class GenPaths:
 
         return action
 
-    def make_cool_quote(action):
+    def make_cool_quote(self,action):
         if int(action) == 1:
             quote = (">You choose the first path,")
         elif int(action) == 2:
