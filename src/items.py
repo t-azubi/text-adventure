@@ -118,41 +118,47 @@ class Armor(Item):
         self.value = value
         self.amount = amount
         self.base = base
-        self.base = base
+        self.part = part
         self.armor = armor
 
 class Leather_ChestPlate(Armor):
     def __init__(self, amount, base=10):
+        self.part = "chest"
         self.amount = amount
         self.base = base
+        self.armor = 1
         super().__init__(name = "Leather Chest Plate",
                          description = "A very tattered leather chestplate.",
                          value=self.base * self.amount,
-                         amount=amount,
-                         base=10,
-                         armor=1,
-                         part="chest")
+                         amount=self.amount,
+                         base=self.base,
+                         armor=self.armor,
+                         part=self.part)
 
 class Leather_Cap(Armor):
     def __init__(self, amount , base = 5):
+        self.part = "head"
         self.amount = amount
         self.base = base
+        self.armor = 0.5
         super().__init__(name = "Leather Cap",
                          description = "A leathern cap.",
                          value=self.base * self.amount,
-                         amount=amount,
-                         base=5,
-                         armor=1,
-                         part="head")
+                         amount=self.amount,
+                         base=self.base,
+                         armor=self.armor,
+                         part=self.part)
 
 class Wooden_Shield(Armor):
-    def __init__(self, amount , base = 15):
+    def __init__(self, amount , base = 15, armor = 1):
+        self.part = "shield"
         self.amount = amount
         self.base = base
+        self.armor = armor
         super().__init__(name="Wooden Shield",
                          description="A wooden shield, may it help.",
                          value=self.base * self.amount,
-                         amount=amount,
-                         base=5,
-                         armor=1,
-                         part="shield")
+                         amount=self.amount,
+                         base=self.base,
+                         armor=self.armor,
+                         part=self.part)

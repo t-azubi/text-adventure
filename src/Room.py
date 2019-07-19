@@ -108,7 +108,7 @@ class EnemyRoom(Room):
 
     def modify_player(self, the_player):
         mult = the_player.exp[0]
-        multi = 1 + (mult/10) * the_player.roomcounter/10
+        multi = 1 + (mult/10) * the_player.roomcounter/10 * the_player.slayedEnemies / 10 * the_player.fledFromRoom / 5
         self.enemy.hp *= multi
         self.enemy.hp =round(self.enemy.hp, 1)
         self.enemy.damage *= multi
@@ -116,7 +116,8 @@ class EnemyRoom(Room):
         if self.enemy.is_alive():
             the_player.hp = the_player.hp - self.enemy.damage
             the_player.hp = round(the_player.hp, 1)
-            print("Enemy does {} damage. You have {} HP remaining.".format(self.enemy.damage, the_player.hp))
+            print("Enemy does {} damage. You have {} HP remaining.".format(round(self.enemy.damage,1), round(the_player.hp,1)))
+
     def revive(self):
         if self.enemy.name == Enemies.GiantSpider().name:
             self.enemy = Enemies.GiantSpider()
@@ -251,7 +252,8 @@ class Gen_Current_Room():
             return Find5GoldRoom()
 
     def gen(self):
-        return  MerchantRoom()
+        return MerchantRoom()
+        rand = random.randint(1, 3)
         if  rand % 3 == 0:
             return self.get_lootroom()
         elif rand % 3 == 1:

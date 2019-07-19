@@ -108,10 +108,13 @@ def enemyRoom(room, player):
                 player.attack(enemy=room.enemy)
             elif action.upper() == "FLEE":
                 player.flee()
+                player.fledFromRoom += 1
                 Room.Gen_Current_Room().gen()
+                player.roomcounter += 1
                 return player
             else:
                 print(">Invalid input")
+        player.slayedEnemies += 1
         enemy = room.enemy
         exp = enemy.exp * (1 + (player.roomcounter / 10))
         print(">{} drops {} exp.".format(enemy.name, exp))
@@ -121,16 +124,15 @@ def enemyRoom(room, player):
     elif room.name == "merchantroom":
         print(room.intro_text())
         action = input(str("> Do you want to sell, buy or leave?\n"))
-        merch = merchant.Merchant
-        x = merch().gen_listofitems()
-        merch.items = x
+        merch = merchant.Merchant()
+        merch.items = merch.gen_listofitems()
         while not action.lower() == "leave":
             if action.upper() == "SELL":
-                merch().sell( player)
+                merch = player.sell(merch)
                 action = input(str("\nDo you want to buy or sell something other or leave?"))
             elif action.upper() == "BUY":
-                merch().buy( player)
-                action = input(str("\nDo you want to buy or sell something other or leave?"))
+                 merch = player.buy(merch)
+                 action = input(str("\nDo you want to buy or sell something other or leave?"))
             else:
                 action = input()
     else:
