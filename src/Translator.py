@@ -128,5 +128,11 @@ class Translator:
         translated = translator.translate(u_input, dest=language)
         print(translated.text)
 
+#u_input = str(input("enter a sentence"))
+#language = str(input("Enter your language abreviations(eg: en for english or de for german) "))
+#translated = translator.translate(u_input, dest=language)
+#print(translated.text)
+#print("Teset")
 
-print("Teset")
+
+
