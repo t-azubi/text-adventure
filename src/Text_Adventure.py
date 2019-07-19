@@ -7,20 +7,21 @@ import IdelOption
 import Room
 from Classes import Quotes, GenPaths
 from Player import Character
+import merchant
 
 
 ############### Changes to be made ###############
 #
-# input auf (done)
+# input auf upper/ lower(done)
 # waffe kann kaputt gehen, brauchen noch random chance dafür
 #
-
+#
 #
 #
 #### Erik ist ein trunkenbold #####
 #
 #
-#k
+#
 #
 #
 ##################################################
@@ -105,38 +106,60 @@ print(
 
 def modRoom(room, player):
     if room != Room.EmptyCavePath:
-        room.modify_player(room(), player)
+        room.modify_player(player)
 
 
 def enemyRoom(room, player):
-    if room == Room.OgreRoom or room == Room.GiantSpiderRoom:
-        print(room.intro_text(room().enemy))
-        actions = room().available_actions()
+    if room.name == "enemyroom":
+        print(room.intro_text())
+        actions = room.available_actions()
         for x in actions:
             print(x.name)
-        while room().enemy.is_alive():
+        while room.enemy.is_alive():
             action = input(str(">Please type what you want to do\n"))
             if action.upper() == "ATTACK":
-                player.attack(enemy=room().enemy)
-            else:
+                player.attack(enemy=room.enemy)
+            elif action.upper() == "FLEE":
                 player.flee()
-                return
+                Room.Gen_Current_Room().gen()
+                return player
+            else:
+                print(">Invalid input")
+        enemy = room.enemy
+        exp = enemy.exp * (1 + (player.roomcounter / 10))
+        print(">{} drops {} exp.".format(enemy.name, exp))
+        player.exp[1] += exp
+        return player
+    elif room.name == "merchantroom":
+        print(room.intro_text())
+        action = input(str("> Do you want to sell, buy or leave?\n"))
+        merch = merchant.Merchant
+        while not action.lower() == "leave":
+            if action.upper() == "SELL":
+                merch().sell( player)
+            elif action.upper() == "BUY":
+                merch().buy( player)
+                action = input(str("\nDo you want to buy or sell something other or leave?"))
+            else:
+                action = input()
     else:
-        print(room.intro_text(self=room))
+        print(room.intro_text())
+    return player
 
 player = Character()
-rooms = Room
-rooms.StartingRoom.intro_text(self=rooms)
+Room.StartingRoom.intro_text(Room)
 print("> You look around an find some items\n")
 Character.print_inventory(player)
 option = IdelOption.Option
 GenPaths.path_gen()
-room = rooms.Gen_Current_Room.gen()
-enemyRoom(room=room, player=player)
+player.roomcounter += 1
+room = Room.Gen_Current_Room().gen()
+player = enemyRoom(room=room, player=player)
 modRoom(room=room, player=player)
 while player.is_alive() and not player.victory:
     option.desciption(player)
     GenPaths.path_gen()
-    room = rooms.Gen_Current_Room.gen()
-    enemyRoom(room=room, player=player)
+    player.roomcounter += 1
+    room = Room.Gen_Current_Room().gen()
+    player = enemyRoom(room=room, player=player)
     modRoom(room=room, player=player)

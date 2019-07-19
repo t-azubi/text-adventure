@@ -4,8 +4,10 @@ import items
 class Character:
     def __init__(self):
         self.inventory = [items.Gold(15), items.Rock(1)]
+        self.exp = [1, 0]
         self.hp = 100
         self.victory = False
+        self.roomcounter = 0
 
     def is_alive(self):
         return self.hp > 0
@@ -16,6 +18,33 @@ class Character:
         for item in self.inventory:
             print(item)
         print("#################################################\n")
+
+    def get_needed_exp(self):
+        lvl = self.exp[0]
+        max = 100.0
+        for x in range(0, lvl):
+            max += x * 1.2
+        exp = max - self.exp[1]
+        return exp
+
+    def print_stats(self):
+        exp = self.get_needed_exp()
+        if exp < 1:
+            self.exp[0] += 1
+            exp = self.get_needed_exp()
+        else:
+            best_weapon = None
+            max_dmg = 0
+            for i in self.inventory:
+                if isinstance(i, items.Weapon):
+                    if i.dmg > max_dmg:
+                        max_dmg = i.dmg
+                        best_weapon = i
+            print("#################################################\n")
+            print (">You passed {} rooms.\n".format(self.roomcounter))
+            print(">You have {} Hp, {} Armor and your best weapon does {} damage.\n".format(self.hp, "0",best_weapon.dmg))
+            print(">You are lvl {}. You need {} Exp to reach the next lvl.".format(self.exp[0], exp))
+            print("\n#################################################\n")
 
     def attack(self, enemy):
         best_weapon = None

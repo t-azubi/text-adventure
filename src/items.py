@@ -88,17 +88,17 @@ class Sword(Weapon):
 
 class Axe(Weapon):
     def __init__(self, amount, base=35):
-        self.amount = amount
-        self.base = base
-        super().__init__(name="Axe",
-                         kind="melee",
-                         dmg=18,
-                         value=base * self.amount,
-                         broken=False,
-                         description="Off with their heads",
-                         amount=amount,
-                         base = 35
-                         )
+      self.amount = amount
+      self.base = base
+      super().__init__(name="Axe",
+                       kind="melee",
+                       dmg=18,
+                       value=base * self.amount,
+                       broken=False,
+                       description="Off with their heads",
+                       amount=amount,
+                       base = 35
+                       )
 
 
 class Gold(Item):
@@ -106,7 +106,7 @@ class Gold(Item):
         self.amount = amount
         self.base = base
         super().__init__(name="Gold",
-                         description="A round coin with {} stamped on the front.".format(str(self.amount)),
+                         description="A round shiny Coin",
                          value=self.base * self.amount,
                          amount=self.amount,
                          base=1)
