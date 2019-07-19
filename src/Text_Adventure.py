@@ -108,25 +108,31 @@ def enemyRoom(room, player):
                 player.attack(enemy=room.enemy)
             elif action.upper() == "FLEE":
                 player.flee()
+                player.fledFromRoom += 1
                 Room.Gen_Current_Room().gen()
+                player.roomcounter += 1
                 return player
             else:
                 print(">Invalid input")
+        player.slayedEnemies += 1
         enemy = room.enemy
         exp = enemy.exp * (1 + (player.roomcounter / 10))
         print(">{} drops {} exp.".format(enemy.name, exp))
         player.exp[1] += exp
+        player.exp = player.update_lvl()
         return player
     elif room.name == "merchantroom":
         print(room.intro_text())
         action = input(str("> Do you want to sell, buy or leave?\n"))
-        merch = merchant.Merchant
+        merch = merchant.Merchant()
+        merch.items = merch.gen_listofitems()
         while not action.lower() == "leave":
             if action.upper() == "SELL":
-                merch().sell( player)
-            elif action.upper() == "BUY":
-                merch().buy( player)
+                merch = player.sell(merch)
                 action = input(str("\nDo you want to buy or sell something other or leave?"))
+            elif action.upper() == "BUY":
+                 merch = player.buy(merch)
+                 action = input(str("\nDo you want to buy or sell something other or leave?"))
             else:
                 action = input()
     else:
@@ -138,14 +144,14 @@ Room.StartingRoom.intro_text(Room)
 print("> You look around an find some items\n")
 Character.print_inventory(player)
 option = IdelOption.Option
-GenPaths.path_gen()
+GenPaths().path_gen()
 player.roomcounter += 1
 room = Room.Gen_Current_Room().gen()
 player = enemyRoom(room=room, player=player)
 modRoom(room=room, player=player)
 while player.is_alive() and not player.victory:
     option.desciption(player)
-    GenPaths.path_gen()
+    GenPaths().path_gen()
     player.roomcounter += 1
     room = Room.Gen_Current_Room().gen()
     player = enemyRoom(room=room, player=player)

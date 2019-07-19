@@ -7,13 +7,12 @@ import items
 class Option:
 
     def desciption(player):
-        action = str(
-            input(">Do you want to look around, walk out of this room, view your stats or open you inventory? \n"))
+        action = str(input(">Do you want to look around, walk out of this room, view your stats or open you inventory? \n"))
         action = re.sub("\n", "", action)
         action = re.sub("\s", "", action)
         if action.upper() == "LOOK":
             Option.look_around(player)
-            Option.desciption(player)
+            Option.desciption2(player)
         elif action.upper() == "WALK":
             Option.walk_around(player)
         elif action.upper() == "STATS":
@@ -27,12 +26,12 @@ class Option:
             Option.desciption(player)
 
     def desciption2(player):
-        action = str(input(">Do you want to walk out of this room, view your exp or open you inventory? \n"))
+        action = str(input(">Do you want to walk out of this room, view your stats or open you inventory? \n"))
         action = re.sub("\n", "", action)
         action = re.sub("\s", "", action)
         if action.upper() == "WALK":
             Option.walk_around(player)
-        elif action.upper() == "EXP":
+        elif action.upper() == "STATS":
             player.print_stats()
             Option.desciption2(player)
         elif action.upper() == "INVENTORY":
@@ -58,13 +57,16 @@ class Option:
 
     def find_loot(self, player):
         rand = random.randint(1, 1000)
-        if rand < 10:
-            Option.modify_player(Option, player, items.Sword)
+        if 1 < rand < 10:
+            Option.modify_player(Option, player, items.Sword(1))
             print(">A shiny sword is behind a desk, you take it.")
-        elif 10 < rand < 300:
+        elif rand == 1:
+            Option.modify_player(Option, player, items.Axe(1))
+            print(">You found a Axe hanging from the wall.")
+        elif 10 < rand < 100:
             Option.modify_player(Option, player, items.Gold(5))
             print(">There are 5 golden Coins")
-        elif 300 < rand < 500:
+        elif 300 < rand < 400:
             Option.modify_player(Option, player, items.Gold(7))
             print(">A tiny bag of gold Coins")
         elif 500 < rand:
