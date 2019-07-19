@@ -3,9 +3,10 @@ import items
 
 class Character:
     def __init__(self):
-        self.inventory = [items.Gold(15), items.Rock(1), items.Leather_Cap(1)]
+        self.inventory = [items.Gold(15), items.Rock(1), items.SmallPotion(1)]
         self.exp = [1, 0]
         self.hp = 100
+        self.hpmax = 100
         self.victory = False
         self.roomcounter = 0
         self.slayedEnemies = 0
@@ -33,6 +34,7 @@ class Character:
         exp = self.get_needed_exp()
         if exp < 1:
             self.exp[0] += 1
+            self.hpmax += 30
             exp = self.get_needed_exp()
         return self.exp
     def print_stats(self):
@@ -65,7 +67,7 @@ class Character:
             armor = best_chest + best_head + best_shield
             print("#################################################\n")
             print (">You passed {} rooms, slayed {} Enemies and fled from {} rooms.\n".format(self.roomcounter, self.slayedEnemies, self.fledFromRoom))
-            print(">You have {} Hp, {} Armor and your best weapon does {} damage.\n".format(round(self.hp,1), armor,best_weapon.dmg))
+            print(">You have {} from max {} Hp, {} Armor and your best weapon does {} damage.\n".format(round(self.hp,1), self.hpmax, armor,best_weapon.dmg))
             print(">You are lvl {}. You need {} Exp to reach the next lvl.".format(self.exp[0], round(exp,1)))
             print("\n#################################################\n")
 
@@ -114,7 +116,7 @@ class Character:
         if merchant.gold.amount < 150:
             print("You can sell items to the merchant.")
             for item in self.inventory:
-                print("\nItem: {} , Amount: {}, base Value: {}\n".format(item.name, item.amount, item.base))
+                print("\nItem: {} , Amount: {}, Description: {},  base Value: {}\n".format(item.name, item.amount,item.description, item.base))
             bool = False
             item = (input("Which items do you want to sell or are you finish selling?"))
             if item.upper() == "FINISH":
@@ -135,19 +137,19 @@ class Character:
                                 mitems.value = mitems.base * mitems.amount
                                 bool = True
                         if bool == False:
-                            merchant.items.append(item)
+                            merchant.items.append(items)
                         merchant.gold.amount -= mitems.base
                         print("\n>You sold {} for {} golden coins.".format(items.name, items.base))
+                        return merchant
         else:
             print("You cant sell items to the merchant.")
-
-        return merchant
+            return merchant
 
     def buy(self, merchant):
         x = items.Gold(1)
         bool = False
         for item in merchant.items:
-            print("\nItem: {} , Amount: {}, base Value: {}\n".format(item.name, item.amount, item.base))
+            print("\nItem: {} , Amount: {}, Description: {},  base Value: {}\n".format(item.name, item.amount,item.description, item.base))
         what = input(str(">You have {} Gold. What would you like to buy, or are you finished buying?".format(self.inventory[0].amount)))
         for mitems in merchant.items:
             if what.upper() == "FINISH":
@@ -157,10 +159,7 @@ class Character:
                     print("> You do not have enough gold")
                     return merchant
                 else:
-                    if mitems.amount > 0:
                         mitems.amount -= 1
-                        if mitems.amount == 0:
-                            merchant.items.remove(mitems)
                         mitems.value = mitems.base * mitems.amount
                         merchant.gold.amount += mitems.base
                         self.inventory[0].amount -= mitems.base
@@ -171,9 +170,15 @@ class Character:
                                 pitems.value = pitems.amount * pitems.base
                                 bool = True
                         if bool == False:
-                            self.inventory.append(mitems)
-                    else:
-                        merchant.items.remove(mitems)
+                            if mitems.amount == 0:
+                                mitems.amount += 1
+                                self.inventory.append(mitems)
+                                mitems.amount -= 1
+                                return merchant
+                            else:
+                                self.inventory.append(mitems)
+                        if mitems.amount == 0:
+                            merchant.items.remove(mitems)
         return merchant
 
     def flee(self):
