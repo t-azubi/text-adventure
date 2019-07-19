@@ -7,7 +7,7 @@ import items
 class Option:
 
     def desciption(player):
-        action = str(input(">Do you want to look around, walk out of this room, view your stats or open you inventory? \n"))
+        action = str(input(">Do you want to look around, walk out of this room, view your stats, heal you  or open you inventory? \n"))
         action = re.sub("\n", "", action)
         action = re.sub("\s", "", action)
         if action.upper() == "LOOK":
@@ -15,6 +15,10 @@ class Option:
             Option.desciption2(player)
         elif action.upper() == "WALK":
             Option.walk_around(player)
+            return player
+        elif action.upper() == "HEAL":
+            Option.use_potion(player)
+            Option.desciption(player)
         elif action.upper() == "STATS":
             player.print_stats()
             Option.desciption(player)
@@ -26,11 +30,15 @@ class Option:
             Option.desciption(player)
 
     def desciption2(player):
-        action = str(input(">Do you want to walk out of this room, view your stats or open you inventory? \n"))
+        action = str(input(">Do you want to walk out of this room, view your stats, heal you  or open you inventory? \n"))
         action = re.sub("\n", "", action)
         action = re.sub("\s", "", action)
         if action.upper() == "WALK":
             Option.walk_around(player)
+            return player
+        elif action.upper() == "HEAL":
+            Option.use_potion(player)
+            Option.desciption2(player)
         elif action.upper() == "STATS":
             player.print_stats()
             Option.desciption2(player)
@@ -40,6 +48,23 @@ class Option:
         else:
             print(">Invalid Input! ")
             Option.desciption2(player)
+
+    def use_potion(player):
+        if player.hp == player.hpmax:
+            print(">You have maximum Hp! No need to use a potion")
+            return player
+        else:
+            for i in player.inventory:
+                if isinstance(i, items.Potion):
+                    print("\n Name: {}, Description {}".format(i.name, i.description))
+            potion = input(str("> You have {} from {} HP, which potion do you want to use?\n".format(round(player.hp,1), player.hpmax)))
+            for i in player.inventory:
+                if isinstance(i, items.Potion) and i.name.lower() == potion.name.lower():
+                    player.hp += i.heal
+                    if player.hp > player.hpmax:
+                        player.hp = player.hpmax
+        return player
+
 
     def look_around(player):
         quote = (">You look around,")

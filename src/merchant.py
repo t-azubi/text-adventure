@@ -28,7 +28,7 @@ class Merchant:
         return list
 
     def get_item(self):
-        rand = random.randint(0, 8)
+        rand = random.randint(0, 14)
         if rand == 1:
             return items.Dagger(1)
         elif rand == 2:
@@ -43,6 +43,18 @@ class Merchant:
             return items.Wooden_Shield(1)
         elif rand == 7:
             return items.Leather_Cap(1)
+        elif rand == 8:
+            return  items.Iron_Shield(1)
+        elif rand == 9:
+            return items.Chainmail_Cap(1)
+        elif rand == 10:
+            return items.Chainmail_ChestPlate(1)
+        elif rand == 11:
+            return  items.Iron_Cap(1)
+        elif rand == 12:
+            return items.Iron_ChestPlate(1)
+        elif rand == 13:
+            return items.SmallPotion(1)
         else:
             return items.Dagger(1)
 

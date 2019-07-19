@@ -135,6 +135,48 @@ class Leather_ChestPlate(Armor):
                          armor=self.armor,
                          part=self.part)
 
+class Chainmail_ChestPlate(Armor):
+    def __init__(self, amount, base=50):
+        self.part = "chest"
+        self.amount = amount
+        self.base = base
+        self.armor = 2
+        super().__init__(name = "Chainmail Chest Plate",
+                         description = "A Chainmail chestplate.",
+                         value=self.base * self.amount,
+                         amount=self.amount,
+                         base=self.base,
+                         armor=self.armor,
+                         part=self.part)
+
+class Iron_ChestPlate(Armor):
+    def __init__(self, amount, base=150):
+        self.part = "chest"
+        self.amount = amount
+        self.base = base
+        self.armor = 5
+        super().__init__(name = "Iron Chest Plate",
+                         description = "A strong looking Iron chestplate.",
+                         value=self.base * self.amount,
+                         amount=self.amount,
+                         base=self.base,
+                         armor=self.armor,
+                         part=self.part)
+
+class Steel_ChestPlate(Armor):
+    def __init__(self, amount, base=210):
+        self.part = "chest"
+        self.amount = amount
+        self.base = base
+        self.armor = 7
+        super().__init__(name = "Steel Chest Plate",
+                         description = "A steel chestplate.",
+                         value=self.base * self.amount,
+                         amount=self.amount,
+                         base=self.base,
+                         armor=self.armor,
+                         part=self.part)
+
 class Leather_Cap(Armor):
     def __init__(self, amount , base = 5):
         self.part = "head"
@@ -143,6 +185,45 @@ class Leather_Cap(Armor):
         self.armor = 0.5
         super().__init__(name = "Leather Cap",
                          description = "A leathern cap.",
+                         value=self.base * self.amount,
+                         amount=self.amount,
+                         base=self.base,
+                         armor=self.armor,
+                         part=self.part)
+class Chainmail_Cap(Armor):
+    def __init__(self, amount , base = 30):
+        self.part = "head"
+        self.amount = amount
+        self.base = base
+        self.armor = 1.5
+        super().__init__(name = "Chainmail Cap",
+                         description = "A Chainmail cap, will safe your head.",
+                         value=self.base * self.amount,
+                         amount=self.amount,
+                         base=self.base,
+                         armor=self.armor,
+                         part=self.part)
+class Iron_Cap(Armor):
+    def __init__(self, amount , base = 55):
+        self.part = "head"
+        self.amount = amount
+        self.base = base
+        self.armor = 2
+        super().__init__(name = "Iron Cap",
+                         description = "A iron cap.",
+                         value=self.base * self.amount,
+                         amount=self.amount,
+                         base=self.base,
+                         armor=self.armor,
+                         part=self.part)
+class Viking_Cap(Armor):
+    def __init__(self, amount , base = 85):
+        self.part = "head"
+        self.amount = amount
+        self.base = base
+        self.armor = 5
+        super().__init__(name = "Viking Cap",
+                         description = "A cap from a Viking, it looks pretty cool.",
                          value=self.base * self.amount,
                          amount=self.amount,
                          base=self.base,
@@ -162,3 +243,99 @@ class Wooden_Shield(Armor):
                          base=self.base,
                          armor=self.armor,
                          part=self.part)
+class Iron_Shield(Armor):
+    def __init__(self, amount , base = 95, armor = 3):
+        self.part = "shield"
+        self.amount = amount
+        self.base = base
+        self.armor = armor
+        super().__init__(name="Iron Shield",
+                         description="A Iron shield, let's fight.",
+                         value=self.base * self.amount,
+                         amount=self.amount,
+                         base=self.base,
+                         armor=self.armor,
+                         part=self.part)
+class Reinforced_Wooden_Shield(Armor):
+    def __init__(self, amount , base = 55, armor = 2):
+        self.part = "shield"
+        self.amount = amount
+        self.base = base
+        self.armor = armor
+        super().__init__(name="Reinforced Wooden Shield",
+                         description="A reinforced wooden shield, it looks like this will protect you very well.",
+                         value=self.base * self.amount,
+                         amount=self.amount,
+                         base=self.base,
+                         armor=self.armor,
+                         part=self.part)
+
+class Reinforced_Wooden_Shield(Armor):
+    def __init__(self, amount , base = 150, armor = 5):
+        self.part = "shield"
+        self.amount = amount
+        self.base = base
+        self.armor = armor
+        super().__init__(name="Reinforced Iron Shield",
+                         description="A strong reinforced Iron shield. It's is like a wall protecting you.",
+                         value=self.base * self.amount,
+                         amount=self.amount,
+                         base=self.base,
+                         armor=self.armor,
+                         part=self.part)
+
+
+class Potion(Item):
+    def __init__(self,description, value, name, amount, base,heal):
+        self.name = name
+        self.description = description
+        self.value = value
+        self.amount = amount
+        self.base = base
+        self.heal = heal
+
+class SmallPotion(Potion):
+    def __init__(self,amount, base = 10):
+        self.base = base
+        self.amount = amount
+        super().__init__(
+                         name="Small healing potion",
+                         description="A small healing Potion, which heals you by {}HP".format(self.base),
+                         value= self.base * self.amount,
+                         amount= self.amount,
+                         base= self.base,
+                         heal= base)
+
+class MediumPotion(Potion):
+    def __init__(self, amount, base = 30):
+        self.base = base
+        self.amount = amount
+        super().__init__(
+                         name="Medium healing potion",
+                         description="A medium healing Potion, which heals you by {}HP".format(self.base),
+                         value= self.base * self.amount,
+                         amount= self.amount,
+                         base= self.base,
+                         heal= base)
+
+class BigPotion(Potion):
+    def __init__(self, amount, base = 70):
+        self.base = base
+        self.amount = amount
+        super().__init__(name="Big healing potion",
+                         description="A big healing Potion, which heals you by {}HP".format(self.base),
+                         value= self.base * self.amount,
+                         amount= self.amount,
+                         base= self.base,
+                         heal= base)
+
+class Potionplus(Potion):
+    def __init__(self, amount, base=70, heal= 10000):
+        self.base = base
+        self.amount = amount
+        super().__init__(name="Big healing potion",
+                         description="A big healing Potion, which heals to max hp",
+                         value=self.base * self.amount,
+                         amount=self.amount,
+                         base=self.base,
+                         heal=heal)
