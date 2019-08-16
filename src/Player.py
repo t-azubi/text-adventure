@@ -171,14 +171,15 @@ class Character:
                                 bool = True
                         if bool == False:
                             if mitems.amount == 0:
-                                mitems.amount += 1
-                                self.inventory.append(mitems)
-                                mitems.amount -= 1
+                                a = mitems
+                                merchant.items.remove(mitems)
+                                a.amount = 1
+                                a.value = a.amount * a.base
+                                self.inventory.append(a)
                                 return merchant
                             else:
                                 self.inventory.append(mitems)
-                        if mitems.amount == 0:
-                            merchant.items.remove(mitems)
+
         return merchant
 
     def flee(self):

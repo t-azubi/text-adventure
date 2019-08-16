@@ -59,7 +59,7 @@ class Option:
                     print("\n Name: {}, Description {}".format(i.name, i.description))
             potion = input(str("> You have {} from {} HP, which potion do you want to use?\n".format(round(player.hp,1), player.hpmax)))
             for i in player.inventory:
-                if isinstance(i, items.Potion) and i.name.lower() == potion.name.lower():
+                if isinstance(i, items.Potion) and i.name.lower() == potion.lower():
                     player.hp += i.heal
                     if player.hp > player.hpmax:
                         player.hp = player.hpmax

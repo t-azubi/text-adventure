@@ -252,7 +252,6 @@ class Gen_Current_Room():
             return Find5GoldRoom()
 
     def gen(self):
-        return MerchantRoom()
         rand = random.randint(1, 3)
         if  rand % 3 == 0:
             return self.get_lootroom()
