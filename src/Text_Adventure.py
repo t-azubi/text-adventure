@@ -18,7 +18,7 @@ import merchant
 #
 #
 #
-#### Erik ist ein trunkenbold #####
+# Test
 #
 #
 #
