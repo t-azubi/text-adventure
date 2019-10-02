@@ -18,13 +18,14 @@ import merchant
 #
 #
 #
-#### Erik ist ein trunkenbold #####
+# Test
 #
 #
 #
 #
 #
 ##################################################
+
 
 
 def displayIntro():
@@ -51,6 +52,10 @@ def IntroQuestion(intro):
         print("\nINSTRUCTIONS, just follow along the questions and just input the things you are allowed to!!!")
         # time.sleep(1.5)
         Help(intro)
+    elif intro.upper() == "LANGUAGE":
+        print("\nChoose the language you want to play in")
+        # time.sleep(1.5)
+        Language(intro)
     elif intro.upper() == "QUIT":
         print("\n#######################################")
         print("##                                   ##")
@@ -74,6 +79,14 @@ def Story(intro):
 
 def Help(intro):
     if intro.upper() == "HELP":
+        intro = input("\nIf you are ready to start the game, enter the START command! ")
+        IntroQuestion(intro)
+    else:
+        intro = str(input("\n" + Quotes.invalid_input()))
+        IntroQuestion(intro)
+
+def Language(intro):
+    if intro.upper() == "LANGUAGE":
         intro = input("\nIf you are ready to start the game, enter the START command! ")
         IntroQuestion(intro)
     else:
